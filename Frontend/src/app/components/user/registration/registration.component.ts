@@ -1,15 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styles: []
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() { }
+  registrationForm = new FormGroup({
+    UserName: new FormControl('', Validators.required),
+    Name: new FormControl('', Validators.required),
+    LastName: new FormControl('', Validators.email),
+    Password: new FormControl('', [Validators.required, Validators.minLength(4)]),
+  });
+
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+
+
   }
 
 }
