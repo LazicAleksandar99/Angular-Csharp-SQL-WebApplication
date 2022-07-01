@@ -4,9 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-var requestOptions = {
-  method: 'GET',
-};
+
 export class UserService {
 
   constructor( private http: HttpClient) { }
@@ -14,9 +12,12 @@ export class UserService {
   //login(login:Login) :Observable<Token> {
   //  return this.http.post<Token>(environment.serverURL + '/api/users/login', login);
   //}
-   var= fetch("https://api.geoapify.com/v1/geocode/autocomplete?text=Mosco&apiKey=4000191e0ce34c7eab077e13aded54e1", requestOptions)
-    .then(response => response.json())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
+  //var requestOptions = {
+ //method: 'GET',
+///};
+  // var= fetch("https://api.geoapify.com/v1/geocode/autocomplete?text=Mosco&apiKey=4000191e0ce34c7eab077e13aded54e1", requestOptions)
+  //  .then(response => response.json())
+   // .then(result => console.log(result))
+    //.catch(error => console.log('error', error));
 }
 
