@@ -5627,11 +5627,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\acopr\\Desktop\\WEB2_PROJECT\\Backend\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\acopr\\Desktop\\WEB2_PROJECT\\FullStackWebApplication\\Backend\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\acopr\\Desktop\\WEB2_PROJECT\\Backend\\Backend\\Backend.csproj",
+      "projectPath": "C:\\Users\\acopr\\Desktop\\WEB2_PROJECT\\FullStackWebApplication\\Backend\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\acopr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\acopr\\Desktop\\WEB2_PROJECT\\Backend\\Backend\\obj\\",
+      "outputPath": "C:\\Users\\acopr\\Desktop\\WEB2_PROJECT\\FullStackWebApplication\\Backend\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\acopr\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KVt8bSY4aLqqV+O70jPRQlL1ST4MElP4boiaB+w5AvLWX2D6ycjy8uWgQ3i5iRnZigRaNKX/RkZ159SpegBUtA==",
+  "dgSpecHash": "nEKueTR2s38LW7r1Wyuexyny+xdfZKlOLfpRuPeAc93tjhATr3mPdhZ/Mx4LNn7A8hkB5479CIGjYO2Q3+TjPQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\acopr\\Desktop\\WEB2_PROJECT\\Backend\\Backend\\Backend.csproj",
+  "projectFilePath": "C:\\Users\\acopr\\Desktop\\WEB2_PROJECT\\FullStackWebApplication\\Backend\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\acopr\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\acopr\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
