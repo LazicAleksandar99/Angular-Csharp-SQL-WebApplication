@@ -61,3 +61,13 @@ C:\Users\acopr\Desktop\WEB2_PROJECT\Backend\Backend\obj\Debug\net5.0\Backend.dll
 C:\Users\acopr\Desktop\WEB2_PROJECT\Backend\Backend\obj\Debug\net5.0\ref\Backend.dll
 C:\Users\acopr\Desktop\WEB2_PROJECT\Backend\Backend\obj\Debug\net5.0\Backend.pdb
 C:\Users\acopr\Desktop\WEB2_PROJECT\Backend\Backend\obj\Debug\net5.0\Backend.genruntimeconfig.cache
+C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\obj\Debug\net5.0\Backend.csproj.AssemblyReference.cache
+C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\obj\Debug\net5.0\Backend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\obj\Debug\net5.0\Backend.AssemblyInfoInputs.cache
+C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\obj\Debug\net5.0\Backend.AssemblyInfo.cs
+C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\obj\Debug\net5.0\Backend.csproj.CoreCompileInputs.cache
+C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\obj\Debug\net5.0\Backend.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\obj\Debug\net5.0\Backend.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\obj\Debug\net5.0\Backend.dll
+C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\obj\Debug\net5.0\ref\Backend.dll
+C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\obj\Debug\net5.0\Backend.pdb

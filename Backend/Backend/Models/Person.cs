@@ -12,10 +12,11 @@ namespace Backend.Models
         public string Username { get; set; }
         public string Email { get; set; }
         public byte[] Password { get; set; }
+        public byte[] PasswordKey { get; set; }
         public string Name { get; set; }
         public string Lastname { get; set; }
         public DateTime Birthday { get; set; }
-        public string Adress { get; set; }
+        public string Address { get; set; }
         public Userrole Role { get; set; }
         public string Picture { get; set; }
 
