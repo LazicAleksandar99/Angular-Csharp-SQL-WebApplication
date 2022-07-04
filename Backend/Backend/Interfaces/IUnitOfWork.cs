@@ -7,7 +7,7 @@ namespace Backend.Interfaces
 {
     public interface IUnitOfWork
     {
-        ILoginRepository LoginRepository { get; }
+        IAccountRepository AccountRepository { get; }
 
         Task<bool> SaveAsync();
     }

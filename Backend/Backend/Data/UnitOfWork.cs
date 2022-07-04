@@ -16,7 +16,7 @@ namespace Backend.Data
             this.dsdc = dsdc;
         }
 
-        public ILoginRepository LoginRepository => new LoginRepository(dsdc);
+        public IAccountRepository AccountRepository => new AccountRepository(dsdc);
 
         public async Task<bool> SaveAsync()
         {

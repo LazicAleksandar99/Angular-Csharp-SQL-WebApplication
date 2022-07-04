@@ -29,7 +29,7 @@ namespace Backend.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginReqDto loginReq)
         {
-            var user = await uow.LoginRepository.Authenticate(loginReq.Username, loginReq.Password);
+            var user = await uow.AccountRepository.Authenticate(loginReq.Username, loginReq.Password);
 
             ApiError apiError = new ApiError();
 
@@ -45,6 +45,29 @@ namespace Backend.Controllers
             loginRes.Username = user.Username;
             loginRes.Token = CreateJWT(user);
             return Ok(loginRes);
+        }
+
+        public async Task<IActionResult> Register(RegistrationDto newAccount)
+        {
+            ApiError apiError = new ApiError();
+            
+            if (String.IsNullOrWhiteSpace(newAccount.Username) || String.IsNullOrWhiteSpace(newAccount.Password))
+            {
+                apiError.ErrorCode = BadRequest().StatusCode;
+                apiError.ErrorMessage = "User name or password can not be blank";
+                return BadRequest(apiError);
+            }
+
+            if (await uow.AccountRepository.UsernameAlreadyExists(newAccount.Username))
+            {
+                apiError.ErrorCode = BadRequest().StatusCode;
+                apiError.ErrorMessage = "User already exists, please try different user name";
+                return BadRequest(apiError);
+            }
+
+            uow.AccountRepository.Register(newAccount);
+            await uow.SaveAsync();
+            return StatusCode(201);
         }
 
         private string CreateJWT(Person user)
