@@ -22,8 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Dto\" />
     <Folder Include="Mapping\" />
   </ItemGroup>
 
