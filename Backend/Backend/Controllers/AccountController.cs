@@ -47,6 +47,7 @@ namespace Backend.Controllers
             return Ok(loginRes);
         }
 
+        [HttpPost("register")]
         public async Task<IActionResult> Register(RegistrationDto newAccount)
         {
             ApiError apiError = new ApiError();

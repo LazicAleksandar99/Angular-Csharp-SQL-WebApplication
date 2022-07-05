@@ -20,6 +20,17 @@
   <label class="form-label" for="typeLastName-2">Last name</label>
 </div>
 
+
+<div class="form-outline mb-2">
+  <input type="date" id="typeBirthday-2" name="trip-start" class="form-control form-control-lg" value="2018-07-22" min="2018-01-01" max="{{currentDate | 'yyyy-MM-dd'}}">
+  <label class="form-label" for="typeBirthday-2">Birthday</label>
+</div>
+
+<div class="form-outline mb-2">
+  <input class="form-control form-control-lg" id="typeLocation-2"  ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)" />
+  <label class="form-label" for="typeLocation-2">Address</label>
+</div>
+
 <div class="form-outline mb-2">
   <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
   <label class="form-label" for="typePasswordX-2">Password</label>
@@ -28,11 +39,6 @@
 <div class="form-outline mb-2">
   <input type="password" id="typePassword-3" class="form-control form-control-lg" />
   <label class="form-label" for="typePassword-3">Confirme password</label>
-</div>
-
-<div class="form-outline mb-2">
-  <input class="form-control form-control-lg" id="typeLocation-2"  ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)" />
-  <label class="form-label" for="typeLocation-2">Address</label>
 </div>
 
 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">

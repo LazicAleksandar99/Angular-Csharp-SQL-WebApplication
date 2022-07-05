@@ -10,10 +10,12 @@ import { Router } from '@angular/router';
 export class RegistrationComponent implements OnInit {
 
   title = 'google-places-autocomplete';
+  currentDate = new Date;
+
   //userAddress: string = ''
   //userLatitude: string = ''
   //userLongitude: string = ''
-
+  //ovo moram da vidim kako da ubacim u adresu
   options={
     componentRestrictions:{
     country:["AU"]
@@ -36,7 +38,8 @@ export class RegistrationComponent implements OnInit {
 
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {  console.log()
+  }
 
   ngOnInit() {
   }
