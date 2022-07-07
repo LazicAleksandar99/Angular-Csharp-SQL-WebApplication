@@ -22,7 +22,7 @@ namespace Backend.Data.Repositorys
             autHelper = new AuthenticationHelper();
         }
 
-        public async Task<Person> Authenticate(string userName, string passwordText)
+        public async Task<User> Authenticate(string userName, string passwordText)
         {
             var user = await dsdc.Users.FirstOrDefaultAsync(x => x.Username == userName);
 
@@ -56,7 +56,7 @@ namespace Backend.Data.Repositorys
                 user.Address = newAccount.Address;
                 user.Birthday = newAccount.Birthday;
                 user.Email = newAccount.Email;
-                user.Name = newAccount.Name;
+                user.Firstname = newAccount.Firstname;
                 user.Lastname = newAccount.Lastname;
                 user.Role = Userrole.NormalUser;
 
@@ -64,16 +64,16 @@ namespace Backend.Data.Repositorys
             }
             else
             {
-                Deliverer user = new Deliverer();
-                user.Username = newAccount.Username;
-                user.Password = passwordHash;
-                user.PasswordKey = passwordKey;
-                user.Address = newAccount.Address;
-                user.Birthday = newAccount.Birthday;
-                user.Email = newAccount.Email;
-                user.Name = newAccount.Name;
-                user.Lastname = newAccount.Lastname;
-                user.Role = Userrole.NormalUser;
+                //Deliverer user = new Deliverer();
+                //user.Username = newAccount.Username;
+                //user.Password = passwordHash;
+                //user.PasswordKey = passwordKey;
+                //user.Address = newAccount.Address;
+                //user.Birthday = newAccount.Birthday;
+                //user.Email = newAccount.Email;
+                //user.Name = newAccount.Name;
+                //user.Lastname = newAccount.Lastname;
+                //user.Role = Userrole.NormalUser;
 
                // dsdc.Deliverers.Add(user);
             }

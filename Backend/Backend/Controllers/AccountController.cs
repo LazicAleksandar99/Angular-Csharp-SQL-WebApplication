@@ -71,7 +71,7 @@ namespace Backend.Controllers
             return StatusCode(201);
         }
 
-        private string CreateJWT(Person user)
+        private string CreateJWT(User user)
         {
             var secretKey = configuration.GetSection("AppSettings:Key").Value;
             var key = new SymmetricSecurityKey(Encoding.UTF8
