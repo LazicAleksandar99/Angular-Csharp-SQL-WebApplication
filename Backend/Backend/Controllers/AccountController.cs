@@ -29,7 +29,7 @@ namespace Backend.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginReqDto loginReq)
         {
-            var user = await uow.AccountRepository.Authenticate(loginReq.Username, loginReq.Password);
+            var user = await uow.AccountRepository.Authenticate(loginReq.Email, loginReq.Password);
 
             ApiError apiError = new ApiError();
 
@@ -51,7 +51,7 @@ namespace Backend.Controllers
         public async Task<IActionResult> Register(RegistrationDto newAccount)
         {
             ApiError apiError = new ApiError();
-            
+
             if (String.IsNullOrWhiteSpace(newAccount.Username) || String.IsNullOrWhiteSpace(newAccount.Password))
             {
                 apiError.ErrorCode = BadRequest().StatusCode;
@@ -63,6 +63,62 @@ namespace Backend.Controllers
             {
                 apiError.ErrorCode = BadRequest().StatusCode;
                 apiError.ErrorMessage = "User already exists, please try different user name";
+                return BadRequest(apiError);
+            }
+
+            if (String.IsNullOrWhiteSpace(newAccount.Email))
+            {
+                apiError.ErrorCode = BadRequest().StatusCode;
+                apiError.ErrorMessage = "Email can not be blank";
+                return BadRequest(apiError);
+            }
+
+            if(await uow.AccountRepository.EmailAlreadyExists(newAccount.Email))
+            {
+                apiError.ErrorCode = BadRequest().StatusCode;
+                apiError.ErrorMessage = "Email already exists, please try different email";
+                return BadRequest(apiError);
+            }
+
+            if (String.IsNullOrWhiteSpace(newAccount.Firstname) || newAccount.Firstname.Length < 3)
+            {
+                apiError.ErrorCode = BadRequest().StatusCode;
+                apiError.ErrorMessage = "Firstname can not be blank or less then 3 characters";
+                return BadRequest(apiError);
+            }
+
+            if (String.IsNullOrWhiteSpace(newAccount.Lastname) || newAccount.Lastname.Length < 3)
+            {
+                apiError.ErrorCode = BadRequest().StatusCode;
+                apiError.ErrorMessage = "Lastname can not be blank or less then 3 characters";
+                return BadRequest(apiError);
+            }
+
+            if(String.IsNullOrWhiteSpace(newAccount.Password) || newAccount.Password.Length < 8)
+            {
+                apiError.ErrorCode = BadRequest().StatusCode;
+                apiError.ErrorMessage = "Password can not be blank or less then 8 characters";
+                return BadRequest(apiError);
+            }
+
+            if(newAccount.Birthday < new DateTime(1900,1,1) || newAccount.Birthday > DateTime.Now.Date)//provjeriti u nekom jos dobu dali je uvijek tacno datum posto mozda ide po Londonu i onda sat vremena nije tacno..
+            {
+                apiError.ErrorCode = BadRequest().StatusCode;
+                apiError.ErrorMessage = "Persons birthday has to be between 1900.01.01 and current date";
+                return BadRequest(apiError);
+            }
+
+            if(newAccount.Role == Userrole.Admin)
+            {
+                apiError.ErrorCode = 401;
+                apiError.ErrorMessage = "You are not authorized for such action";
+                return BadRequest(apiError);
+            }
+
+            if (String.IsNullOrWhiteSpace(newAccount.Address) || newAccount.Address.Length < 3)
+            {
+                apiError.ErrorCode = BadRequest().StatusCode;
+                apiError.ErrorMessage = "Address can not be blank or less then 3 characters";
                 return BadRequest(apiError);
             }
 
@@ -79,7 +135,7 @@ namespace Backend.Controllers
 
             var claims = new Claim[] {
                 new Claim(ClaimTypes.Name,user.Username),
-                new Claim(ClaimTypes.NameIdentifier,user.Id.ToString())
+                new Claim(ClaimTypes.NameIdentifier,user.Id.ToString())//claim role...
             };
 
             var signingCredentials = new SigningCredentials(
@@ -88,7 +144,7 @@ namespace Backend.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(1),
+                Expires = DateTime.UtcNow.AddMinutes(30),
                 SigningCredentials = signingCredentials
             };
 

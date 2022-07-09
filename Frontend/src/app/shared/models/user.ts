@@ -13,7 +13,7 @@ export interface UserForRegister {
 }
 
 export interface UserForLogin {
-    username: string;
+    email: string;
     password: string;
     token: string;
 }

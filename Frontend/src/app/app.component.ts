@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+//import { GoogleApiService } from './shared/services/google-api.service';
+//ovdje smo mjenjali
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,4 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Frontend';
 
+  constructor(){
+
+  }
 }

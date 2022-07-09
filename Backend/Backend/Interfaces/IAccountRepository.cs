@@ -9,9 +9,9 @@ namespace Backend.Interfaces
 {
     public interface IAccountRepository
     {
-        Task<User> Authenticate(string userName, string password);
+        Task<User> Authenticate(string email, string password);
         void Register(RegistrationDto newAccount);
         Task<bool> UsernameAlreadyExists(string userName);
-
+        Task<bool> EmailAlreadyExists(string email);
     }
 }

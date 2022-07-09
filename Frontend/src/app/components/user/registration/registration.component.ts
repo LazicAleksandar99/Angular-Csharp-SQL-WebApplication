@@ -99,12 +99,11 @@ export class RegistrationComponent implements OnInit {
         password: this.password.value,
         picture: ""
     };
-}
+  }
 
   get username() {
     return this.registerationForm.get('username') as FormControl;
   }
-
   get email() {
     return this.registerationForm.get('email') as FormControl;
   }

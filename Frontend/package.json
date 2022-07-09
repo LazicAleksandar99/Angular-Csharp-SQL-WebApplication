@@ -22,6 +22,7 @@
     "@geoapify/geocoder-autocomplete": "^1.4.0",
     "alertifyjs": "^1.13.1",
     "angular-material-datepicker": "^1.0.2",
+    "angular-oauth2-oidc": "^13.0.1",
     "bootstrap": "^5.1.3",
     "ngx-google-places-autocomplete": "^2.0.5",
     "rxjs": "~7.5.0",

@@ -22,9 +22,9 @@ namespace Backend.Data.Repositorys
             autHelper = new AuthenticationHelper();
         }
 
-        public async Task<User> Authenticate(string userName, string passwordText)
+        public async Task<User> Authenticate(string email, string passwordText)
         {
-            var user = await dsdc.Users.FirstOrDefaultAsync(x => x.Username == userName);
+            var user = await dsdc.Users.FirstOrDefaultAsync(x => x.Email == email);
 
             if (user == null || user.PasswordKey == null)
                 return null;
@@ -82,6 +82,11 @@ namespace Backend.Data.Repositorys
         public async Task<bool> UsernameAlreadyExists(string userName)
         {
             return await dsdc.Users.AnyAsync(x => x.Username == userName);
+        }
+
+        public async Task<bool> EmailAlreadyExists(string email)
+        {
+            return await dsdc.Users.AnyAsync(x => x.Email == email);
         }
     }
 }
