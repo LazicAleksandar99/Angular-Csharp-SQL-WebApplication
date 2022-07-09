@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationBarComponent } from '../navigation-bar/navigation-bar.component';
 
 @Component({
   selector: 'app-dashboard',
