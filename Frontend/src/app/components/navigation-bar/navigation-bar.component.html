@@ -1,16 +1,16 @@
 <nav class="navbar navbar-light fixed-top" style="background-color:#ffc244;">
   <div class="container-fluid" style="background-color:#ffc244;">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" style="margin-left: 2%;" href="#">
       <img src="../../../assets/images/homebutton1.png" alt="" width="50" height="38" class="d-inline-block align-text-top">
        BipBip
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" style="margin-right: 2%;">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!--HAMBURGER OPTIONS-->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header">
+      <div class="offcanvas-header" style="background-color:#ffc244;">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">BipBip</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
@@ -19,6 +19,11 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">
               <i class="fa-regular fa-user"></i>  Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">
+              <i class="fa-solid fa-cart-shopping"></i>  Cart
             </a>
           </li>
           <li class="nav-item">
@@ -38,7 +43,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
+            <a class="nav-link active" aria-current="page" (click)="SignOut()">
               <i class="fa-solid fa-right-from-bracket"></i>  Sign out
             </a>
           </li>

@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
         console.log('Name: ' + profile.getName());
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail());
-
+        localStorage.setItem('token', googleAuthUser.getAuthResponse().id_token);
        /* Write Your Code Here */
        this.router.navigateByUrl('/home');
       }, (error:any) => {
