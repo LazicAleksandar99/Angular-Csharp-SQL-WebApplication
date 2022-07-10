@@ -1,5 +1,6 @@
 using Backend.Data;
 using Backend.Interfaces;
+using Backend.Mapping;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,6 +43,8 @@ namespace Backend
             services.AddDbContext<DeliverySystemDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DeliverySystemDataBase")));
            // services.AddControllers().AddNewtonsoftJson();
             services.AddCors();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
            // services.AddScoped<IPhotoService, PhotoService>();
 

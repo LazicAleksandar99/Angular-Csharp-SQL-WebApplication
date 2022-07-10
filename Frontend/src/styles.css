@@ -3,6 +3,6 @@
 @import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
 
 body{
-  background: #ffc244;
-  background: linear-gradient(to right, #ffc244, #fce4b4);
+  background: white;
+ /* background: linear-gradient(to right, #ffc244, #fce4b4);*/
 }

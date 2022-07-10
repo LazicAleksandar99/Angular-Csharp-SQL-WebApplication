@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,10 @@ import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { UserComponent } from './components/user/user.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProductListComponent } from './components/product/product-list/product-list.component';
+import { ProductCardComponent } from './components/product/product-card/product-card.component';
+
+
 import { OAuthModule } from 'angular-oauth2-oidc';
 
 @NgModule({
@@ -27,6 +32,8 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     LoginComponent,
     RegistrationComponent,
     DashboardComponent,
+    ProductListComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +48,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     MatInputModule,
     MatNativeDateModule,
     BrowserAnimationsModule,
+    NgxPaginationModule,
     OAuthModule.forRoot()
   ],
   providers: [],
