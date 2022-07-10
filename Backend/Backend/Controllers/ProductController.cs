@@ -22,7 +22,7 @@ namespace Backend.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet("products")]
+        [HttpGet("product/list")]
         [AllowAnonymous]
         public async Task<IActionResult> GetProducts()
         {
