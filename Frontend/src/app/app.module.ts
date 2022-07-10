@@ -11,6 +11,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+import { OAuthModule } from 'angular-oauth2-oidc';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
@@ -20,9 +22,8 @@ import { UserComponent } from './components/user/user.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { ProductCardComponent } from './components/product/product-card/product-card.component';
-
-
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { ShowUserProfileComponent } from './components/user-profile/show-user-profile/show-user-profile.component';
+import { ChangeUserProfileComponent } from './components/user-profile/change-user-profile/change-user-profile.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     RegistrationComponent,
     DashboardComponent,
     ProductListComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ShowUserProfileComponent,
+    ChangeUserProfileComponent
   ],
   imports: [
     BrowserModule,
