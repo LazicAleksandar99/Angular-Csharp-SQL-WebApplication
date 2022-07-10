@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { UserDetails } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -7,17 +10,15 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 export class UserService {
 
+  baseUrl = environment.baseUrl;
   constructor( private http: HttpClient) { }
 
-  //login(login:Login) :Observable<Token> {
-  //  return this.http.post<Token>(environment.serverURL + '/api/users/login', login);
+  getUserDetails(): Observable<UserDetails> {
+    return this.http.get<UserDetails>(this.baseUrl + '/account/details');
+  }
+
+  //addProduct(product: Product){
+  //  return this.http.post(this.baseUrl + '/product/add',product);
   //}
-  //var requestOptions = {
- //method: 'GET',
-///};
-  // var= fetch("https://api.geoapify.com/v1/geocode/autocomplete?text=Mosco&apiKey=4000191e0ce34c7eab077e13aded54e1", requestOptions)
-  //  .then(response => response.json())
-   // .then(result => console.log(result))
-    //.catch(error => console.log('error', error));
 }
 

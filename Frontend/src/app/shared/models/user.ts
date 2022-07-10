@@ -17,3 +17,12 @@ export interface UserForLogin {
     password: string;
     token: string;
 }
+
+export interface UserDetails{
+  username: string;
+  email: string;
+  firstname: string;
+  lastname: string;
+  brithday: Date;
+  address: string;
+}
