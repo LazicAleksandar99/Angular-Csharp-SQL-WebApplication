@@ -8,6 +8,7 @@ namespace Backend.Interfaces
     public interface IUnitOfWork
     {
         IAccountRepository AccountRepository { get; }
+        IProductRepository ProductRepository { get; }
 
         Task<bool> SaveAsync();
     }

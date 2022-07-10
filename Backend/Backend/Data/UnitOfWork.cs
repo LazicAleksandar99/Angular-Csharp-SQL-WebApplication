@@ -18,6 +18,8 @@ namespace Backend.Data
 
         public IAccountRepository AccountRepository => new AccountRepository(dsdc);
 
+        public IProductRepository ProductRepository => new ProductRepository(dsdc);
+
         public async Task<bool> SaveAsync()
         {
             return await dsdc.SaveChangesAsync() > 0;

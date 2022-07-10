@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Backend.Dtos;
+using Backend.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,7 @@ namespace Backend.Mapping
     {
         public AutoMapperProfiles()
         {
-            //CreateMap<City, CityDto>().ReverseMap();
+            CreateMap<Product, ProductDto>().ReverseMap();
         }
     }
 }
