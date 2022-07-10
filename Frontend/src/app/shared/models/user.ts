@@ -23,6 +23,6 @@ export interface UserDetails{
   email: string;
   firstname: string;
   lastname: string;
-  brithday: Date;
+  birthday: Date;
   address: string;
 }

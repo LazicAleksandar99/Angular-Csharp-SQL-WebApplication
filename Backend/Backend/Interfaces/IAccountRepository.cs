@@ -13,5 +13,6 @@ namespace Backend.Interfaces
         void Register(RegistrationDto newAccount);
         Task<bool> UsernameAlreadyExists(string userName);
         Task<bool> EmailAlreadyExists(string email);
+        Task<User> GetUserDetails(long id);
     }
 }

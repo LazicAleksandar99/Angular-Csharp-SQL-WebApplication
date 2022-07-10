@@ -1,4 +1,5 @@
-﻿using Backend.Dtos;
+﻿using AutoMapper;
+using Backend.Dtos;
 using Backend.Errors;
 using Backend.Interfaces;
 using Backend.Models;
@@ -19,11 +20,13 @@ namespace Backend.Controllers
     {
         private readonly IUnitOfWork uow;
         private readonly IConfiguration configuration;
+        private readonly IMapper mapper;
 
-        public AccountController(IUnitOfWork uow, IConfiguration configuration)
+        public AccountController(IUnitOfWork uow, IConfiguration configuration, IMapper mapper)
         {
             this.uow = uow;
             this.configuration = configuration;
+            this.mapper = mapper;
         }
 
         [HttpPost("login")]
@@ -42,7 +45,7 @@ namespace Backend.Controllers
             }
 
             var loginRes = new LoginResDto();
-            loginRes.Username = user.Username;
+            loginRes.Id = user.Id;
             loginRes.Token = CreateJWT(user);
             return Ok(loginRes);
         }
@@ -125,6 +128,14 @@ namespace Backend.Controllers
             uow.AccountRepository.Register(newAccount);
             await uow.SaveAsync();
             return StatusCode(201);
+        }
+
+        [HttpGet("details/{id}")]
+        public async Task<IActionResult> GetUserDetail(long id)
+        {
+            var user = await uow.AccountRepository.GetUserDetails(id);
+            var userDetailsDto = mapper.Map<UserDetailsDto>(user);
+            return Ok(userDetailsDto);
         }
 
         private string CreateJWT(User user)

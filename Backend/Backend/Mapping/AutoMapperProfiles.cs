@@ -13,6 +13,8 @@ namespace Backend.Mapping
         public AutoMapperProfiles()
         {
             CreateMap<Product, ProductDto>().ReverseMap();
+
+            CreateMap<User, UserDetailsDto>().ReverseMap();
         }
     }
 }

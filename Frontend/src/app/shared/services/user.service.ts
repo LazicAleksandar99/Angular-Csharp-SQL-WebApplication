@@ -13,8 +13,8 @@ export class UserService {
   baseUrl = environment.baseUrl;
   constructor( private http: HttpClient) { }
 
-  getUserDetails(): Observable<UserDetails> {
-    return this.http.get<UserDetails>(this.baseUrl + '/account/details');
+  getUserDetails(id: number): Observable<UserDetails> {
+    return this.http.get<UserDetails>(this.baseUrl + '/account/details/'+ id.toString());
   }
 
   //addProduct(product: Product){

@@ -10,15 +10,18 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class ShowUserProfileComponent implements OnInit {
   user: UserDetails;
+  id: any;
 
   constructor(private route: Router, private profileService: UserService) { }
 
   ngOnInit() {
-
+    this.getUserDetails();
   }
 
   getUserDetails(){
-    this.profileService.getUserDetails().subscribe(
+    this.id =localStorage.getItem('id');
+
+    this.profileService.getUserDetails(this.id).subscribe(
       data=>{
         this.user = data;
         console.log(data);

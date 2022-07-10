@@ -88,5 +88,23 @@ namespace Backend.Data.Repositorys
         {
             return await dsdc.Users.AnyAsync(x => x.Email == email);
         }
+
+        public async Task<User> GetUserDetails(long id)
+        {
+            User user = await dsdc.Users.Where(u => u.Id == id).FirstAsync();
+
+            //var user = await dsdc.Users
+            //    .Include(p => p.Address)
+            //    .Include(p => p.Birthday)
+            //    .Include(p => p.Email)
+            //    .Include(p => p.Firstname)
+            //    .Include(p => p.Lastname)
+            //    .Include(p => p.Username)
+            //    .Where(p => p.Id == id)
+            //    .FirstAsync();
+
+            return user;
+        }
+
     }
 }
