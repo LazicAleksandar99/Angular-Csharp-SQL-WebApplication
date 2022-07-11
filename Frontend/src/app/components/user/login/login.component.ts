@@ -3,6 +3,7 @@ import { NgForm, FormGroup, FormControl, Validators, FormBuilder } from '@angula
 import { Router } from '@angular/router';
 import { UserForLogin } from 'src/app/shared/models/user';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { StorageService } from 'src/app/shared/services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
               private fb: FormBuilder,
-              private authService: AuthService,) {
+              private authService: AuthService,
+              private storageService: StorageService) {
 
       this.createLoginForm();
   }
@@ -39,9 +41,10 @@ export class LoginComponent implements OnInit {
       console.log(this.loginForm.value)
       this.authService.authUser(this.loginForm.value).subscribe(
         (res: any) => {
-          localStorage.setItem('token', res.token);
-          localStorage.setItem('id', res.id);
+          this.storageService.setStorage(res.token,res.id);
           console.log(res);
+          console.log(res.id);
+          console.log(res.token)
           this.router.navigateByUrl('/home/dashboard');
         },
         err => {

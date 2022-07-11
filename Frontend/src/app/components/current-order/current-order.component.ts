@@ -10,6 +10,9 @@ export class CurrentOrderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+  console.log('current-order');
+  console.log(sessionStorage.getItem('id'))
   }
 
 }

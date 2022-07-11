@@ -4,14 +4,16 @@ using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(DeliverySystemDbContext))]
-    partial class DeliverySystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220711123617_AddedItem")]
+    partial class AddedItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,17 +53,11 @@ namespace Backend.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("CurrentOrdeer")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("DeliveryDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DeliveryTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("OrderAccepted")
-                        .HasColumnType("bit");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -69,14 +65,9 @@ namespace Backend.Migrations
                     b.Property<bool>("SuccessfulDelivery")
                         .HasColumnType("bit");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("Backend.Models.Product", b =>
@@ -183,28 +174,12 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Order", b =>
                 {
-                    b.HasOne("Backend.Models.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Backend.Models.Order", b =>
-                {
                     b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("Backend.Models.Product", b =>
                 {
                     b.Navigation("Items");
-                });
-
-            modelBuilder.Entity("Backend.Models.User", b =>
-                {
-                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

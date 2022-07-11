@@ -11,6 +11,8 @@ namespace Backend.Data
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Item> Items { get; set; }
 
         public DeliverySystemDbContext(DbContextOptions options) : base(options)
         {

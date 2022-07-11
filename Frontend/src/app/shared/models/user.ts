@@ -25,4 +25,5 @@ export interface UserDetails{
   lastname: string;
   birthday: Date;
   address: string;
+  picture: string;
 }

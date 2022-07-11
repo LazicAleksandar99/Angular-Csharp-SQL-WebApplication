@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartProduct, Product } from 'src/app/shared/models/product';
 import { CartService } from 'src/app/shared/services/cart.service';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,10 +11,10 @@ import { CartService } from 'src/app/shared/services/cart.service';
 export class CartComponent implements OnInit {
   cart: CartProduct[];
   public products : any = [];
-  public grandTotal !: number
+  public grandTotal !: number;
 
-
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,
+              private orderService: OrderService) { }
 
   ngOnInit() {
     this.getProdcuts();
@@ -33,6 +34,21 @@ export class CartComponent implements OnInit {
 
   EmptyCart(): void {
     this.cartService.removeAllCart();
+  }
+
+  MakeOrder(): void{
+    console.log('UPS');
+    console.log(sessionStorage.getItem('id'));
+    console.log(sessionStorage.getItem('token'));
+
+    this.orderService.makeOrder(this.products).subscribe(
+      data=>{
+      console.log(data);
+
+    }, error =>{
+      console.log('Error while making order');
+    }
+    )
   }
 
 }

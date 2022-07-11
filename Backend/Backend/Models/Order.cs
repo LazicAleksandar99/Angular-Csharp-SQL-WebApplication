@@ -14,10 +14,15 @@ namespace Backend.Models
         public DateTime DeliveryDate { get; set; }
       //  public PaymentStatusEnum PaymentStatus { get; set; }
         public bool SuccessfulDelivery { get; set; }
-      //  public long UserId { get; set; }
-      ////  public long DelivererId { get; set; }
-      //  public User User { get; set; }
-      ////  public Deliverer Deliverer { get; set; }
+
+        public bool OrderAccepted { get; set; }
+        public bool CurrentOrdeer { get; set; }
+
+        public long UserId { get; set; }
+        public User User { get; set; }
+
+        ////  public long DelivererId { get; set; }
+        ////  public Deliverer Deliverer { get; set; }
         public List<Item> OrderItems { get; set; }
 
     }

@@ -22,7 +22,7 @@ namespace Backend.Models
         public string Picture { get; set; }
         public bool Registrated { get; set; }
         //public long OrderId { get; set; }
-        //public Order CurrentOrder { get; set; }
+        public List<Order> Orders { get; set; }
         //public List<Order> UserHistory { get; set; }
 
     }

@@ -19,8 +19,9 @@ export class ShowUserProfileComponent implements OnInit {
   }
 
   getUserDetails(){
-    this.id =localStorage.getItem('id');
-
+    this.id = localStorage.getItem('id');
+    console.log('wow');
+    console.log(this.id)
     this.profileService.getUserDetails(this.id).subscribe(
       data=>{
         this.user = data;

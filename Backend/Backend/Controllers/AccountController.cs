@@ -3,6 +3,7 @@ using Backend.Dtos;
 using Backend.Errors;
 using Backend.Interfaces;
 using Backend.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -21,12 +22,17 @@ namespace Backend.Controllers
         private readonly IUnitOfWork uow;
         private readonly IConfiguration configuration;
         private readonly IMapper mapper;
+        private readonly IPhotoService photoService;
 
-        public AccountController(IUnitOfWork uow, IConfiguration configuration, IMapper mapper)
+        public AccountController(IUnitOfWork uow, 
+                                IConfiguration configuration, 
+                                IMapper mapper,
+                                IPhotoService photoService)
         {
             this.uow = uow;
             this.configuration = configuration;
             this.mapper = mapper;
+            this.photoService = photoService;
         }
 
         [HttpPost("login")]
@@ -136,6 +142,21 @@ namespace Backend.Controllers
             var user = await uow.AccountRepository.GetUserDetails(id);
             var userDetailsDto = mapper.Map<UserDetailsDto>(user);
             return Ok(userDetailsDto);
+        }
+
+        [HttpPost("photo/{id}")]
+        public async Task<IActionResult> AddPhoto(IFormFile file, long id)
+        {
+            var result = await photoService.UploadPhotoAsync(file);
+            if (result.Error != null)
+                return BadRequest(result.Error.Message);
+
+
+            var user = uow.AccountRepository.GetUserDetails(id);
+            //var user = await uow.AccountRepository.G
+            uow.AccountRepository.UpdateUserPhoto(id, result.SecureUrl.AbsoluteUri);
+
+            return Ok(201); 
         }
 
         private string CreateJWT(User user)

@@ -20,6 +20,8 @@ namespace Backend.Data
 
         public IProductRepository ProductRepository => new ProductRepository(dsdc);
 
+        public IOrderRepository OrderRepository => new OrderRepository(dsdc);
+
         public async Task<bool> SaveAsync()
         {
             return await dsdc.SaveChangesAsync() > 0;

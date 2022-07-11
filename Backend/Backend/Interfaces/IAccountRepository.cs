@@ -14,5 +14,7 @@ namespace Backend.Interfaces
         Task<bool> UsernameAlreadyExists(string userName);
         Task<bool> EmailAlreadyExists(string email);
         Task<User> GetUserDetails(long id);
+        void UpdateUserPhoto(long id, string photo);
+        
     }
 }

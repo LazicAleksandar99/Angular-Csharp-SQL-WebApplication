@@ -9,7 +9,7 @@ namespace Backend.Interfaces
     {
         IAccountRepository AccountRepository { get; }
         IProductRepository ProductRepository { get; }
-
+        IOrderRepository OrderRepository { get; }
         Task<bool> SaveAsync();
     }
 }

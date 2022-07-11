@@ -25,14 +25,14 @@
                               <td style="width: 12%;">{{item.quantity}}</td>
                               <td style="width: 12%;">{{item.total}}</td>
                               <td>
-                                  <button  class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                  <button  class="btn btn-danger" (click)="RemoveItem(item)"><i class="fas fa-trash-alt"></i></button>
                               </td>
                           </tr>
                           <tr>
                               <td colspan="4"></td>
-                              <td><button  class="btn btn-danger">Empty Cart</button></td>
+                              <td><button  class="btn btn-danger" (click)="EmptyCart()">Empty Cart</button></td>
                               <td><button routerLink="/home/dashboard" class="btn btn-primary">Shop More</button></td>
-                              <td><button class="btn btn-success">Checkout</button></td>
+                              <td><button class="btn btn-success" (click)="MakeOrder()">Make an order</button></td>
                               <td><strong>Grand Total : ${{grandTotal}}</strong></td>
                           </tr>
                       </tbody>

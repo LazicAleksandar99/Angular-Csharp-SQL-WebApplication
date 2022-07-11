@@ -4,14 +4,16 @@ using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(DeliverySystemDbContext))]
-    partial class DeliverySystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220711132747_UpdateOrder1")]
+    partial class UpdateOrder1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,9 +53,6 @@ namespace Backend.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("CurrentOrdeer")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("DeliveryDate")
                         .HasColumnType("datetime2");
 
@@ -74,7 +73,8 @@ namespace Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Orders");
                 });
@@ -184,8 +184,8 @@ namespace Backend.Migrations
             modelBuilder.Entity("Backend.Models.Order", b =>
                 {
                     b.HasOne("Backend.Models.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
+                        .WithOne("CurrentOrder")
+                        .HasForeignKey("Backend.Models.Order", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -204,7 +204,7 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.User", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("CurrentOrder");
                 });
 #pragma warning restore 612, 618
         }

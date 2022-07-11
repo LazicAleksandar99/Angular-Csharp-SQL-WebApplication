@@ -16,9 +16,5 @@ export class UserService {
   getUserDetails(id: number): Observable<UserDetails> {
     return this.http.get<UserDetails>(this.baseUrl + '/account/details/'+ id.toString());
   }
-
-  //addProduct(product: Product){
-  //  return this.http.post(this.baseUrl + '/product/add',product);
-  //}
 }
 

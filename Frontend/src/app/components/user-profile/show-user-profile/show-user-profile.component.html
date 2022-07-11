@@ -1,9 +1,12 @@
 
 <div class="card mb-4 shadow-lg" style="margin-top: 4cm;">
   <div class="card-body text-center">
-    <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="avatar"
-      class="rounded-circle img-fluid" style="width: 150px;">
     <div *ngIf="user">
+            <div *ngIf="user.picture; else elseBlock"><img  src="{{user.picture}}" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;"></div>
+            <ng-template #elseBlock><img  src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;"></ng-template>
+
       <h5 class="my-3">{{user.firstname}} {{user.lastname}}</h5>
       <p class="text-muted mb-1">Email: {{user.email}}</p>
       <p class="text-muted mb-1">Username: {{user.username}}</p>

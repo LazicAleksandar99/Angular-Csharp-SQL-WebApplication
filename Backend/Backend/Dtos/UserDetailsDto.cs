@@ -13,5 +13,6 @@ namespace Backend.Dtos
         public string Lastname { get; set; }
         public DateTime Birthday { get; set; }
         public string Address { get; set; }
+        public string Picture { get; set; }
     }
 }

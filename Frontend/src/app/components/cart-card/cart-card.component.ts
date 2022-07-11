@@ -8,12 +8,17 @@ import { Router } from '@angular/router';
 })
 export class CartCardComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  console.log('check-cart-load');
+  console.log(sessionStorage.getItem("id"));
+
   }
 
   CheckCart() : void{
-    this.route.navigateByUrl('/home/cart')
+    console.log('check-cart');
+    console.log(sessionStorage.getItem('id'));
+    this.router.navigateByUrl('/home/cart')
   }
 }
