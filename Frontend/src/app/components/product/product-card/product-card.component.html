@@ -9,16 +9,18 @@
                 <img src="../../../../assets/images/prodcuts.png" width="200rm">
               </div>
               <div class="mt-5">
-                  <h1 class="main-heading mt-0">{{product.name}}</h1>
+                  <h3 class="main-heading mt-0">{{product.name}}</h3>
                   <h4 class="text-uppercase">{{product.price}}$</h4>
                 </div>
-
           </div>
 
       </div>
       <p>{{product.ingredients}}</p>
+      <form [formGroup]="quantityForm">
+        <input  formControlName="quantityField" id="numberId" type="number" value="1" min="1"  style="text-align:center ;">
+     </form>
 
-      <button class="btn btn-success" >Add to cart</button>
+      <button class="btn btn-success" (click)="AddToCart(product)" >Add to cart</button>
   </div>
 
 </div>

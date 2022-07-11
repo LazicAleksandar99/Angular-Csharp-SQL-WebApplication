@@ -24,6 +24,10 @@ import { ProductListComponent } from './components/product/product-list/product-
 import { ProductCardComponent } from './components/product/product-card/product-card.component';
 import { ShowUserProfileComponent } from './components/user-profile/show-user-profile/show-user-profile.component';
 import { ChangeUserProfileComponent } from './components/user-profile/change-user-profile/change-user-profile.component';
+import { CurrentOrderComponent } from './components/current-order/current-order.component';
+import { CartCardComponent } from './components/cart-card/cart-card.component';
+import { CartComponent } from './components/cart/cart.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { ChangeUserProfileComponent } from './components/user-profile/change-use
     ProductListComponent,
     ProductCardComponent,
     ShowUserProfileComponent,
-    ChangeUserProfileComponent
+    ChangeUserProfileComponent,
+    CurrentOrderComponent,
+    CartCardComponent,
+    CartComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

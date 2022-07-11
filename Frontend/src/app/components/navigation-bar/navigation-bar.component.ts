@@ -14,11 +14,10 @@ export class NavigationBarComponent implements OnInit {
   }
 
   SignOut(): void{
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-
+   // localStorage.removeItem('token');
+   // localStorage.removeItem('username');
+    localStorage.clear();
     this.router.navigateByUrl('/user/login');
-
   }
 
 }
