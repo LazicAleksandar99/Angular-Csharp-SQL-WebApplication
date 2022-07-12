@@ -3,12 +3,19 @@
     <div class="col">
       <app-show-user-profile></app-show-user-profile>
     </div>
-    <div class="col-6" >
+    <div class="col-6" *appHasRole="'NormalUser'">
       <app-product-list></app-product-list>
-
     </div>
-    <div class="col">
+    <div class="col-6" *appHasRole="'Deliverer'">
+      <app-order-list></app-order-list>
+    </div>
+
+    <div class="col" *appHasRole="'NormalUser'">
       <app-cart-card></app-cart-card>
+      <app-current-order></app-current-order>
+    </div>
+    <div class="col" *appHasRole="'Deliverer'">
+      <app-current-order></app-current-order>
       <app-current-order></app-current-order>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light fixed-top" style="background-color:#ffc244;">
   <div class="container-fluid" style="background-color:#ffc244;">
-    <a class="navbar-brand" style="margin-left: 2%;" href="#">
+    <a class="navbar-brand" style="margin-left: 2%;" (click)="CheckDashboard()">
       <img src="../../../assets/images/homebutton1.png" alt="" width="50" height="38" class="d-inline-block align-text-top">
        BipBip
     </a>
@@ -17,34 +17,21 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <i class="fa-regular fa-user"></i>  Profile
+            <a class="nav-link active" aria-current="page" (click)="CheckProfile()">
+              <i class="fa-regular fa-user" ></i>  Profile
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <i class="fa-solid fa-cart-shopping"></i>  Cart
+          <li class="nav-item" *appHasRole="'NormalUser'">
+            <a class="nav-link active" aria-current="page" (click)="CheckCart()" >
+              <i class="fa-solid fa-cart-shopping" ></i>  Cart
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
+          <br>
+          <br>
+          <br>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" (click)="SignOut()">
-              <i class="fa-solid fa-right-from-bracket"></i>  Sign out
+              <i class="fa-solid fa-right-from-bracket"  ></i>  Sign out
             </a>
           </li>
         </ul>

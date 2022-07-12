@@ -5,3 +5,12 @@ export interface Order{
   quantity: number;
   total: number;
 }
+
+export interface PendingOrder{
+  id: number;
+  price: number;
+  userId: number;
+  address: string;
+  email: string;
+  comment: string;
+}

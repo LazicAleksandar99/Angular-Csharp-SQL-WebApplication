@@ -17,5 +17,17 @@ export class NavigationBarComponent implements OnInit {
     localStorage.clear();
     this.router.navigateByUrl('/user/login');
   }
+  CheckDashboard(): void{
+    this.router.navigateByUrl('/home/dashboard')
+  }
+
+
+  CheckProfile(): void{
+    this.router.navigateByUrl('/home/profile')
+  }
+
+  CheckCart(): void{
+    this.router.navigateByUrl('/home/cart')
+  }
 
 }

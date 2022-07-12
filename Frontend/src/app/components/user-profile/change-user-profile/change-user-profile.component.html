@@ -1,3 +1,97 @@
-<p>
-  change-user-profile works!
-</p>
+
+<div class="card mb-4 shadow-lg" style="margin-top: 2.5cm;">
+  <div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+
+            <div *ngIf="user && user.picture; else elseBlock"><img  src="{{user.picture}}" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;height: 150px;"></div>
+            <ng-template #elseBlock><img  src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;"></ng-template>
+
+
+              <span class="font-weight-bold">{{user.firstname}}</span><span class="text-black-50">{{user.email}}</span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+                <form [formGroup]="updateForm">
+                  <div class="row mt-2">
+                      <div class="col-md-6">
+                        <label class="labels">Firstname</label>
+                        <input type="text" class="form-control" formControlName="firstname" placeholder="first name" >
+                        <span *ngIf="!firstname.valid && (firstname.touched)"class="alert">
+                            Please provide name
+                        </span>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="labels">Lastname</label>
+                        <input type="text" class="form-control" formControlName="lastname"  placeholder="surname">
+                        <span *ngIf="!lastname.valid && (lastname.touched)" class="alert">
+                          Please provide lastname
+                        </span>
+                      </div>
+                  </div>
+                  <div class="row mt-3">
+                      <div class="col-md-12">
+                        <label class="labels">Username</label>
+                        <input type="text" class="form-control" formControlName="username" placeholder="enter username" >
+                        <span *ngIf="!username.valid && (username.touched)"class="alert">Please provide username</span>
+                      </div>
+                      <div class="col-md-12">
+                        <label class="labels">Email</label>
+                        <input type="text" class="form-control" formControlName="email" placeholder="enter email" >
+                        <span *ngIf="!email.valid && (email.touched)" class="alert">
+                          <span *ngIf="email.hasError('required')">
+                              Please provide email id
+                          </span>
+                          <span *ngIf="email.hasError('email')">
+                            Please provide valid email id
+                          </span>
+                        </span>
+                      </div>
+                      <div class="col-md-12">
+                        <label class="labels">Address</label>
+                        <input type="text" class="form-control" formControlName="address" placeholder="enter address"    ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)">
+                        <span *ngIf="!address.valid && (address.touched)" class="alert">
+                          Please provide address
+                        </span>
+                      </div>
+                      <div class="col-md-12"><label class="labels">Birthday</label><input type="date" class="form-control" formControlName="birthday" min="1900-01-01" max="2023-01-01" ></div>
+                      <div class="col-md-12">
+                        <label class="labels">Old password</label>
+                        <input type="password" class="form-control" formControlName="oldpassword" placeholder="enter old password">
+                        <span *ngIf="!oldpassword.valid && (oldpassword.touched)" class="alert">
+                          <span *ngIf="oldpassword.hasError('minlength')">
+                            Password should not be lesser than 8 character
+                          </span>
+                        </span>
+                      </div>
+                      <div class="col-md-12">
+                        <label class="labels">New password</label>
+                        <input type="password" class="form-control" formControlName="newpassword" placeholder="enter new password" >
+                      </div>
+
+                  </div>
+                </form>
+                <div class="row mt-3">
+
+                </div>
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" (click)="SaveChanges()">Save Profile</button></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience">
+                  <span>Profile picture</span>
+                  <input type="file" #imageInput class="file-upload" accept="image/*" (change)="onFileChanged(imageInput)" onchange="console.log(event.target.files)">
+                </div><br>
+
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

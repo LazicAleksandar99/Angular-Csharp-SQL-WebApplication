@@ -7,6 +7,7 @@
                   <table class="table table-responsive">
                       <thead>
                           <tr>
+                              <th colspan="1"></th>
                               <th>Sr.No</th>
                               <th>Product Name</th>
                               <th>Product Image</th>
@@ -18,6 +19,7 @@
                       </thead>
                       <tbody>
                           <tr *ngFor="let item of products; let i = index">
+                              <th colspan="1"></th>
                               <td>{{item.id}}</td>
                               <td>{{item.name}}</td>
                               <td><img style="width: 120px;" src="../../../assets/images/prodcuts.png" alt=""></td>
@@ -28,13 +30,21 @@
                                   <button  class="btn btn-danger" (click)="RemoveItem(item)"><i class="fas fa-trash-alt"></i></button>
                               </td>
                           </tr>
+                          <br>
                           <tr>
-                              <td colspan="4"></td>
+                              <td colspan="2"></td>
+                              <td>
+                                <form #commentForm='ngForm'>
+                                  <textarea class="form-control" placeholder="Enter comment" rows="2" id="comment" name="text" required ngModel name="comment"></textarea>
+                                </form>
+                              </td>
+                              <td colspan="1"></td>
                               <td><button  class="btn btn-danger" (click)="EmptyCart()">Empty Cart</button></td>
                               <td><button routerLink="/home/dashboard" class="btn btn-primary">Shop More</button></td>
-                              <td><button class="btn btn-success" (click)="MakeOrder()">Make an order</button></td>
+                              <td><button class="btn btn-success" (click)="MakeOrder(commentForm)">Make an order</button></td>
                               <td><strong>Grand Total : ${{grandTotal}}</strong></td>
                           </tr>
+                          <br>
                       </tbody>
                   </table>
               </div>

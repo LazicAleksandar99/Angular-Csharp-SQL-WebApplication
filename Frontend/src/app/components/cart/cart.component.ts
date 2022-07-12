@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { CartProduct, Product } from 'src/app/shared/models/product';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { OrderService } from 'src/app/shared/services/order.service';
@@ -36,19 +37,20 @@ export class CartComponent implements OnInit {
     this.cartService.removeAllCart();
   }
 
-  MakeOrder(): void{
-    console.log('UPS');
-    console.log(sessionStorage.getItem('id'));
-    console.log(sessionStorage.getItem('token'));
+  MakeOrder(commentForm: NgForm): void{
 
-    this.orderService.makeOrder(this.products).subscribe(
-      data=>{
-      console.log(data);
+    console.log(commentForm.value.comment);
+    if(commentForm.valid){
+      this.orderService.makeOrder(this.products,commentForm.value.comment).subscribe(
+        data=>{
+        console.log(data);
 
-    }, error =>{
-      console.log('Error while making order');
+      }, error =>{
+        console.log('Error while making order');
+      }
+      )
     }
-    )
+
   }
 
 }

@@ -14,16 +14,12 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    console.log(localStorage.getItem('id'))
     this.token = localStorage.getItem('token');
     this.productService.getAllProducts().subscribe(
       data=>{
         this.products = data;
 
-        console.log(data);
-        console.log("OASASDSD OVDEJ")
 
-        console.log(localStorage.getItem('id'))
       }, error =>{
         console.log('ERROR WITH PRODUCTS')
       }

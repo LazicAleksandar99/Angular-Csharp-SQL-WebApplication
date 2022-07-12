@@ -47,36 +47,28 @@ namespace Backend.Data.Repositorys
 
             }
 
-            if(newAccount.Role == Userrole.NormalUser)
-            {
-                User user = new User();
-                user.Username = newAccount.Username;
-                user.Password = passwordHash;
-                user.PasswordKey = passwordKey;
-                user.Address = newAccount.Address;
-                user.Birthday = newAccount.Birthday;
-                user.Email = newAccount.Email;
-                user.Firstname = newAccount.Firstname;
-                user.Lastname = newAccount.Lastname;
-                user.Role = Userrole.NormalUser;
 
-                dsdc.Users.Add(user);
+            User user = new User();
+            user.Username = newAccount.Username;
+            user.Password = passwordHash;
+            user.PasswordKey = passwordKey;
+            user.Address = newAccount.Address;
+            user.Birthday = newAccount.Birthday;
+            user.Email = newAccount.Email;
+            user.Firstname = newAccount.Firstname;
+            user.Lastname = newAccount.Lastname;
+            user.Role = Userrole.NormalUser;
+
+            if (newAccount.Role == Userrole.NormalUser)
+            {
+                user.Role = Userrole.NormalUser;
             }
             else
             {
-                //Deliverer user = new Deliverer();
-                //user.Username = newAccount.Username;
-                //user.Password = passwordHash;
-                //user.PasswordKey = passwordKey;
-                //user.Address = newAccount.Address;
-                //user.Birthday = newAccount.Birthday;
-                //user.Email = newAccount.Email;
-                //user.Name = newAccount.Name;
-                //user.Lastname = newAccount.Lastname;
-                //user.Role = Userrole.NormalUser;
-
-               // dsdc.Deliverers.Add(user);
+                user.Role = Userrole.Deliverer;
             }
+
+            dsdc.Users.Add(user);
         }
 
         public async Task<bool> UsernameAlreadyExists(string userName)
@@ -100,7 +92,71 @@ namespace Backend.Data.Repositorys
             var user = dsdc.Users.SingleOrDefault(x => x.Id == id);
             user.Picture = photo;
 
-            dsdc.SaveChanges();
+           // dsdc.SaveChanges();
+        }
+
+        public async Task<bool> CheckPassword(long id, string oldpassword)
+        {
+            byte[] oldPasswordHash, passwordKey;
+            bool ret = false;
+
+            using (var hmac = new HMACSHA512())
+            {
+                passwordKey = hmac.Key;
+                oldPasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(oldpassword));
+
+            }
+            User user = await dsdc.Users.Where(u => u.Id == id).FirstAsync();
+            
+            if (user.Password == oldPasswordHash)
+                ret = true;
+
+            return ret;
+        }
+
+
+        public async Task<bool> CheckUsername(long id, string username)
+        {
+            bool ret = false;
+            User user = await dsdc.Users.Where(u => u.Id == id).FirstAsync();
+
+            if (user.Username == username)
+                ret = true;
+            return true;
+        }
+        public async Task<bool> CheckEmail(long id, string email)
+        {
+            bool ret = false;
+            User user = await dsdc.Users.Where(u => u.Id == id).FirstAsync();
+
+            if (user.Email == email)
+                ret = true;
+            return true;
+        }
+
+        public void Update(long id,UserUpdateDto userUpdate)
+        {
+            var user = dsdc.Users.SingleOrDefault(x => x.Id == id);
+
+            byte[] passwordHash, passwordKey;
+
+            using (var hmac = new HMACSHA512())
+            {
+                if (!String.IsNullOrWhiteSpace(userUpdate.Newpassword))
+                {
+                    passwordKey = hmac.Key;
+                    passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(userUpdate.Newpassword));
+                    user.Password = passwordHash;
+                    user.PasswordKey = passwordKey;
+                }
+            }
+            
+            user.Address = userUpdate.Address;
+            user.Birthday = userUpdate.Birthday;
+            user.Email = userUpdate.Email;
+            user.Firstname = userUpdate.Firstname;
+            user.Lastname = userUpdate.Lastname;
+            user.Username = userUpdate.Username;
         }
     }
 }

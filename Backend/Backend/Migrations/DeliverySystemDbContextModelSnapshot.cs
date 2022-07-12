@@ -41,7 +41,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Item");
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("Backend.Models.Order", b =>
@@ -51,23 +51,21 @@ namespace Backend.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("CurrentOrdeer")
-                        .HasColumnType("bit");
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DeliveryDate")
-                        .HasColumnType("datetime2");
+                    b.Property<long>("Deliverer")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeliveryTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("OrderAccepted")
-                        .HasColumnType("bit");
+                    b.Property<string>("OrderStatus")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("SuccessfulDelivery")
-                        .HasColumnType("bit");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");

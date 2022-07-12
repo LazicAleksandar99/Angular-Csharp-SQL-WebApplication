@@ -11,6 +11,6 @@ namespace Backend.Dtos
         public string Name { get; set; }
         public double Price { get; set; }
         public long Quantity { get; set; }
-        public double Total { get; set; }
+        public float Total { get; set; }
     }
 }

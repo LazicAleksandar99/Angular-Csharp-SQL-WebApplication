@@ -10,21 +10,21 @@ namespace Backend.Data.Repositorys
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly DeliverySystemDbContext dsdb;
+        private readonly DeliverySystemDbContext dsdc;
 
-        public ProductRepository(DeliverySystemDbContext dsdb)
+        public ProductRepository(DeliverySystemDbContext dsdc)
         {
-            this.dsdb = dsdb;
+            this.dsdc = dsdc;
         }
 
         public void AddProduct(Product product)
         {
-            dsdb.Products.Add(product);
+            dsdc.Products.Add(product);
         }
 
         public async Task<IEnumerable<Product>> GetProductsAsync()
         {
-            return await dsdb.Products.ToListAsync();
+            return await dsdc.Products.ToListAsync();
         }
     }
 }

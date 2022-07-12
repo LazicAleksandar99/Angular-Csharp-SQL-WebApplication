@@ -9,20 +9,15 @@ namespace Backend.Models
     public class Order
     {
         public long Id { get; set; }
-        public int Price { get; set; }
+        public float Price { get; set; }
         public DateTime DeliveryTime { get; set; }
-        public DateTime DeliveryDate { get; set; }
+       // public DateTime DeliveryDate { get; set; }
       //  public PaymentStatusEnum PaymentStatus { get; set; }
-        public bool SuccessfulDelivery { get; set; }
-
-        public bool OrderAccepted { get; set; }
-        public bool CurrentOrdeer { get; set; }
-
+        public string OrderStatus { get; set; }//Pending,Delivering,Delivered
+        public string Comment { get; set; }
         public long UserId { get; set; }
         public User User { get; set; }
-
-        ////  public long DelivererId { get; set; }
-        ////  public Deliverer Deliverer { get; set; }
+        public long Deliverer { get; set; }
         public List<Item> OrderItems { get; set; }
 
     }

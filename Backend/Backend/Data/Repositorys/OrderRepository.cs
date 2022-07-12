@@ -1,5 +1,6 @@
 ﻿using Backend.Interfaces;
 using Backend.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,17 @@ namespace Backend.Data.Repositorys
         public void AddItem(Item item)
         {
             dsdc.Items.Add(item);
+        }
+
+        public void UpdatePrice(long id, float price)
+        {
+            var order = dsdc.Orders.SingleOrDefault(x => x.Id == id);
+            order.Price = price;
+        }
+
+        public async Task<IEnumerable<Order>> GetPendingOrders()
+        {
+            return await dsdc.Orders.Where(x => x.OrderStatus == "Pending").ToListAsync();
         }
     }
 }

@@ -27,3 +27,20 @@ export interface UserDetails{
   address: string;
   picture: string;
 }
+
+export interface UserUpdate{
+  username: string;
+  email: string;
+  firstname: string;
+  lastname: string;
+  birthday: Date;
+  address: string;
+  oldpassword: string;
+  newpassword: string;
+}
+
+export interface UserTokenModel{
+  unique_name: string,
+  nameid: string,
+  role: string,
+}

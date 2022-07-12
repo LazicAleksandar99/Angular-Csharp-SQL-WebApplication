@@ -3,7 +3,7 @@
   <div class="card-body text-center">
     <div *ngIf="user">
             <div *ngIf="user.picture; else elseBlock"><img  src="{{user.picture}}" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;"></div>
+              class="rounded-circle img-fluid" style="width: 150px;height: 150px;"></div>
             <ng-template #elseBlock><img  src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;"></ng-template>
 
@@ -11,11 +11,12 @@
       <p class="text-muted mb-1">Email: {{user.email}}</p>
       <p class="text-muted mb-1">Username: {{user.username}}</p>
       <p class="text-muted mb-4">Address: {{user.address}}</p>
-      <input type="date" class="text-muted mb-4" value="{{user.birthday}}"/>
+      <p class="text-muted mb-4">Birthday: {{user.birthday | date:'MM/dd/yyyy'}}</p>
+      <!--<input type="date" value="{{user.birthday | date:'yyyy-MM-dd'}}">-->
     </div>
 
     <div class="d-flex justify-content-center mb-2">
-      <button type="button" class="btn btn-primary" style="background-color: #ffc244;color:black;">Change Profile</button>
+      <button type="button" class="btn btn-primary" style="background-color: #ffc244;color:black;" (click)="ChangeProfile()">Change Profile</button>
     </div>
   </div>
 </div>

@@ -11,5 +11,8 @@ namespace Backend.Interfaces
         void AddOrder(Order order);
 
         void AddItem(Item item);
+
+        void UpdatePrice(long id, float price);
+        Task<IEnumerable<Order>> GetPendingOrders();
     }
 }

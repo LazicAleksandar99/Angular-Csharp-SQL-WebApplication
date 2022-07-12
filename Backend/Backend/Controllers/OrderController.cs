@@ -21,30 +21,55 @@ namespace Backend.Controllers
             this.mapper = mapper;
         }
 
-        [HttpPost("make/{id}")]
-        public async Task<IActionResult> MakeOrder(MakeOrderDto[] order,long id)
+        [HttpPost("make/{id}/{comment}")]
+        public async Task<IActionResult> MakeOrder(MakeOrderDto[] order,long id,string comment)
         {
+            float grandTotal = 0;
             Order newOrder = new Order();
-            newOrder.CurrentOrdeer = true;
-            newOrder.OrderAccepted = false;
-            newOrder.SuccessfulDelivery = false;
+            newOrder.OrderStatus = "Pending";
+            newOrder.Deliverer = -1;
+            newOrder.Comment = comment;
             newOrder.UserId = id;
 
             uow.OrderRepository.AddOrder(newOrder);
+            await uow.SaveAsync();
 
-            foreach(var item in order)
+            foreach (var item in order)
             {
                 Item newItem = new Item();
                 newItem.Quantity = item.Quantity;
                 newItem.ProductId = item.Id;
                 newItem.OrderId = newOrder.Id;
+                grandTotal += item.Total;
                 uow.OrderRepository.AddItem(newItem);
-                newOrder.OrderItems.Add(newItem);
             }
 
-            //uow.OrderRepository.AddOrder()
-           // long i = id;
+            uow.OrderRepository.UpdatePrice(newOrder.Id, grandTotal);
+            await uow.SaveAsync();
             return StatusCode(201);
+        }
+
+        [HttpGet("orders")]
+        public async Task<IActionResult> GetPendingOrders()
+        {
+            var orders = await uow.OrderRepository.GetPendingOrders();
+
+            var ordersDtos = mapper.Map<IEnumerable<PendingOrderDto>>(orders);
+            List<SendPendingOrderDto> pendingOrders = new List<SendPendingOrderDto>();
+
+            foreach(var orderDto in ordersDtos)
+            {
+                SendPendingOrderDto order = new SendPendingOrderDto();
+                order.Id = orderDto.Id;
+                order.Price = orderDto.Price;
+                order.UserId = orderDto.UserId;
+                order.Comment = orderDto.Comment;
+                var user = await uow.AccountRepository.GetUserDetails(orderDto.UserId);
+                order.Address = user.Address;
+                order.Email = user.Email;
+                pendingOrders.Add(order);
+            }
+            return Ok(pendingOrders);
         }
     }
 }

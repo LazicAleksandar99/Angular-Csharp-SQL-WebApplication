@@ -28,6 +28,8 @@ import { CurrentOrderComponent } from './components/current-order/current-order.
 import { CartCardComponent } from './components/cart-card/cart-card.component';
 import { CartComponent } from './components/cart/cart.component';
 import { HomeComponent } from './components/home/home.component';
+import { HasRoleDirective } from './components/directives/has-role.directive';
+import { OrderListComponent } from './components/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { HomeComponent } from './components/home/home.component';
     CurrentOrderComponent,
     CartCardComponent,
     CartComponent,
-    HomeComponent
+    HomeComponent,
+    HasRoleDirective,
+    OrderListComponent
   ],
   imports: [
     BrowserModule,

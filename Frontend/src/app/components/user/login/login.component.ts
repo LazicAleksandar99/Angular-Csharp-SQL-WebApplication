@@ -42,10 +42,8 @@ export class LoginComponent implements OnInit {
       this.authService.authUser(this.loginForm.value).subscribe(
         (res: any) => {
           this.storageService.setStorage(res.token,res.id);
-          console.log(res);
-          console.log(res.id);
-          console.log(res.token)
           this.router.navigateByUrl('/home/dashboard');
+          console.log('redirekt me')
         },
         err => {
           if (err.status == 400)
