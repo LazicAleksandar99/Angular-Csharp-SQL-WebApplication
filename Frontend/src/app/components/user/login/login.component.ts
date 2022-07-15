@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.googleAuthSDK();
-    console.log(this.auth2);
   }
 
   createLoginForm(){
@@ -38,12 +37,10 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value)
       this.authService.authUser(this.loginForm.value).subscribe(
         (res: any) => {
           this.storageService.setStorage(res.token,res.id);
           this.router.navigateByUrl('/home/dashboard');
-          console.log('redirekt me')
         },
         err => {
           if (err.status == 400)

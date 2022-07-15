@@ -21,9 +21,8 @@ namespace Backend.Models
         public Userrole Role { get; set; }
         public string Picture { get; set; }
         public bool Registrated { get; set; }
-        //public long OrderId { get; set; }
+        public string Verification { get; set; }// pending, denied, verified
         public List<Order> Orders { get; set; }
-        //public List<Order> UserHistory { get; set; }
 
     }
 }

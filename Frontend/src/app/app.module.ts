@@ -30,6 +30,11 @@ import { CartComponent } from './components/cart/cart.component';
 import { HomeComponent } from './components/home/home.component';
 import { HasRoleDirective } from './components/directives/has-role.directive';
 import { OrderListComponent } from './components/order-list/order-list.component';
+import { DeliverersListComponent } from './components/deliverers-list/deliverers-list.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { AllOrdersComponent } from './components/all-orders/all-orders.component';
+import { StatusCardComponent } from './components/status-card/status-card.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 @NgModule({
   declarations: [
@@ -48,8 +53,13 @@ import { OrderListComponent } from './components/order-list/order-list.component
     CartComponent,
     HomeComponent,
     HasRoleDirective,
-    OrderListComponent
-  ],
+    OrderListComponent,
+    DeliverersListComponent,
+    AddProductComponent,
+    AllOrdersComponent,
+    StatusCardComponent,
+    OrderHistoryComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

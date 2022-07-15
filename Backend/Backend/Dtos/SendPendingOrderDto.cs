@@ -13,5 +13,7 @@ namespace Backend.Dtos
         public string Address { get; set; }
         public string Email { get; set; }
         public string Comment { get; set; }
+        public string Content { get; set; }
+
     }
 }

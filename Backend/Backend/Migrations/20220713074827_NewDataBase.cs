@@ -38,7 +38,8 @@ namespace Backend.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
                     Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Registrated = table.Column<bool>(type: "bit", nullable: false)
+                    Registrated = table.Column<bool>(type: "bit", nullable: false),
+                    Verification = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,6 +55,7 @@ namespace Backend.Migrations
                     Price = table.Column<float>(type: "real", nullable: false),
                     DeliveryTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OrderStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     Deliverer = table.Column<long>(type: "bigint", nullable: false)
                 },

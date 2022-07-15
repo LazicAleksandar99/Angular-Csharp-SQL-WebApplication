@@ -11,14 +11,9 @@ export class CartCardComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-  console.log('check-cart-load');
-  console.log(sessionStorage.getItem("id"));
-
   }
 
   CheckCart() : void{
-    console.log('check-cart');
-    console.log(sessionStorage.getItem('id'));
     this.router.navigateByUrl('/home/cart')
   }
 }

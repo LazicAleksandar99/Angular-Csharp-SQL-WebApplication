@@ -20,12 +20,11 @@ export class ShowUserProfileComponent implements OnInit {
 
   getUserDetails(){
     this.id = localStorage.getItem('id');
-    console.log('wow');
-    console.log(this.id)
+
     this.profileService.getUserDetails(this.id).subscribe(
       data=>{
         this.user = data;
-        console.log(data);
+        localStorage.setItem('verification',this.user.verification);
       }, error =>{
         console.log('USER DETAILS')
       }

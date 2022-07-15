@@ -1,7 +1,8 @@
 <table class="table table-hover" style="background-color: #ffc244;">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">Order Id</th>
+      <th scope="col">Content</th>
       <th scope="col">Comment</th>
       <th scope="col">Address</th>
       <th scope="col">User email</th>
@@ -10,15 +11,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of orders; let i = index">
-      <td>{{1+i}}</td>
+    <tr *ngFor="let item of orders;">
+      <td>{{item.id}}</td>
+      <td>{{item.content}}</td>
       <td>{{item.comment}}</td>
       <td>{{item.address}}</td>
       <td style="width: 12%;">{{item.email}}</td>
       <th style="width: 12%;">{{item.price}}</th>
 
       <td>
-        <button class="btn btn-success">Accept</button>
+        <button class="btn btn-success" (click)="Accept(item.id)">Accept</button>
       </td>
   </tr>
   </tbody>

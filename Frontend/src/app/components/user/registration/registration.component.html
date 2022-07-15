@@ -4,7 +4,7 @@
     <label class="form-label" for="typeUsername-2" >Username</label>
     <input type="text" id="typeUsername-2" class="form-control form-control-lg" formControlName="username"/>
     <span *ngIf="!username.valid && (username.touched)"
-            class="error-block">
+            class="alert">
               Please provide username
     </span>
   </div>
@@ -12,7 +12,7 @@
   <div class="form-outline mb-2">
     <label class="form-label" for="typeEmailX-2" >Email</label>
     <input type="email" id="typeEmailX-2" class="form-control form-control-lg" formControlName="email"/>
-    <span *ngIf="!email.valid && (email.touched)" class="error-block">
+    <span *ngIf="!email.valid && (email.touched)" class="alert">
       <span *ngIf="email.hasError('required')">
           Please provide email id
       </span>
@@ -26,7 +26,7 @@
     <label class="form-label" for="typeName-2">First name</label>
     <input type="text" id="typeName-2" class="form-control form-control-lg" formControlName="firstname"/>
     <span *ngIf="!firstname.valid && (firstname.touched)"
-            class="error-block">
+            class="alert">
               Please provide name
     </span>
    </div>
@@ -35,7 +35,7 @@
     <label class="form-label" for="typeLastName-2">Last name</label>
     <input type="text" id="typeLastName-2" class="form-control form-control-lg" formControlName="lastname"/>
     <span *ngIf="!lastname.valid && (lastname.touched)"
-            class="error-block">
+            class="alert">
               Please provide lastname
     </span>
   </div>
@@ -50,7 +50,7 @@
     <label class="form-label" for="typeLocation-2" >Address</label>
     <input class="form-control form-control-lg" id="typeLocation-2"  ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)" formControlName="address"/>
     <span *ngIf="!address.valid && (address.touched)"
-            class="error-block">
+            class="alert">
               Please provide address
     </span>
   </div>
@@ -58,7 +58,7 @@
   <div class="form-outline mb-2">
     <label class="form-label" for="typePasswordX-2" >Password</label>
     <input type="password" id="typePasswordX-2" class="form-control form-control-lg" formControlName="password"/>
-    <span *ngIf="!password.valid && (password.touched)" class="error-block">
+    <span *ngIf="!password.valid && (password.touched)" class="alert">
       <span *ngIf="password.hasError('required')">
         Please provide password
       </span>
@@ -71,11 +71,11 @@
     <label class="form-label" for="typePassword-3">Confirme password</label>
     <input type="password" id="typePassword-3" class="form-control form-control-lg" formControlName="confirmPassword"/>
   </div>
-  <span  *ngIf="!confirmPassword.valid && (confirmPassword.touched)" class="error-block">
+  <span  *ngIf="!confirmPassword.valid && (confirmPassword.touched)" class="alert">
     <span *ngIf="confirmPassword.hasError('required')">
       Please confirm password
     </span>
-    <span *ngIf="registerationForm.hasError('notmatched') && confirmPassword.valid" class="error-block">
+    <span *ngIf="registerationForm.hasError('notmatched') && confirmPassword.valid" class="alert">
       Password not matched
     </span>
   </span>

@@ -131,3 +131,6 @@ C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\bin\
 C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\bin\Debug\net5.0\MailKit.dll
+C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\bin\Debug\net5.0\MimeKit.dll
+C:\Users\acopr\Desktop\WEB2_PROJECT\FullStackWebApplication\Backend\Backend\bin\Debug\net5.0\BouncyCastle.Crypto.dll

@@ -39,11 +39,9 @@ export class CartComponent implements OnInit {
 
   MakeOrder(commentForm: NgForm): void{
 
-    console.log(commentForm.value.comment);
     if(commentForm.valid){
       this.orderService.makeOrder(this.products,commentForm.value.comment).subscribe(
         data=>{
-        console.log(data);
 
       }, error =>{
         console.log('Error while making order');

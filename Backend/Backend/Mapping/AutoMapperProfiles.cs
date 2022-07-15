@@ -17,6 +17,16 @@ namespace Backend.Mapping
             CreateMap<User, UserDetailsDto>().ReverseMap();
 
             CreateMap<Order, PendingOrderDto>().ReverseMap();
+
+            CreateMap<User, DeliverDto>().ReverseMap();
+
+            CreateMap<Product, NewProductDto>().ReverseMap();
+
+            CreateMap<Order, OrderDto>().ReverseMap();
+
+            CreateMap<User, StatusDto>().ReverseMap();
+
+            CreateMap<Order, CurrentOrderDto>().ReverseMap();
         }
     }
 }

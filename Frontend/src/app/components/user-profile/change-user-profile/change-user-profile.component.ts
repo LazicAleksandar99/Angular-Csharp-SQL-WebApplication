@@ -75,13 +75,11 @@ export class ChangeUserProfileComponent implements OnInit {
 
     this.profileService.updateUserDetails(this.id, this.userData()).subscribe(
       data=>{
-        console.log("Updated user successfully");
         if(this.selectedFile){
           let formData = new FormData();
           formData.append("myfile",this.selectedFile);
           this.profileService.updateUserPhoto(this.id,formData).subscribe(
             data=>{
-              console.log('Photo added to cloudinary')
             }, error => {
               console.log('Error updating user photo');
             }
@@ -113,7 +111,6 @@ export class ChangeUserProfileComponent implements OnInit {
 
 
   handleAddressChange(address: any) {
-    //mhh moze se i izbrisati
   }
 
   get username() {

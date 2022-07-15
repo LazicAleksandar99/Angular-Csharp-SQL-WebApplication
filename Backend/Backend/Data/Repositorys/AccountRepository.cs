@@ -62,10 +62,12 @@ namespace Backend.Data.Repositorys
             if (newAccount.Role == Userrole.NormalUser)
             {
                 user.Role = Userrole.NormalUser;
+                user.Verification = "";
             }
             else
             {
                 user.Role = Userrole.Deliverer;
+                user.Verification = "Pending";
             }
 
             dsdc.Users.Add(user);
@@ -122,7 +124,7 @@ namespace Backend.Data.Repositorys
 
             if (user.Username == username)
                 ret = true;
-            return true;
+            return ret;
         }
         public async Task<bool> CheckEmail(long id, string email)
         {
@@ -131,7 +133,7 @@ namespace Backend.Data.Repositorys
 
             if (user.Email == email)
                 ret = true;
-            return true;
+            return ret;
         }
 
         public void Update(long id,UserUpdateDto userUpdate)
@@ -157,6 +159,27 @@ namespace Backend.Data.Repositorys
             user.Firstname = userUpdate.Firstname;
             user.Lastname = userUpdate.Lastname;
             user.Username = userUpdate.Username;
+        }
+
+        public async Task<IEnumerable<User>> GetAllDelivers()
+        {
+            return await dsdc.Users.Where(x => x.Verification != "").ToListAsync();
+        }
+        public void Verify(string username)
+        {
+            var user = dsdc.Users.SingleOrDefault(x => x.Username == username);
+            user.Verification = "Verified";
+        }
+        public void Deny(string username)
+        {
+            var user = dsdc.Users.SingleOrDefault(x => x.Username == username);
+            user.Verification = "Denied";
+        }
+
+        public async Task<User> GetUserDetailsByUsername(string username)
+        {
+            User user = await dsdc.Users.Where(u => u.Username == username).FirstAsync();
+            return user;
         }
     }
 }

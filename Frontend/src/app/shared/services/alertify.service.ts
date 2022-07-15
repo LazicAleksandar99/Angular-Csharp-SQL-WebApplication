@@ -4,6 +4,7 @@ declare let alertify : any;
 @Injectable({
   providedIn: 'root'
 })
+//NO USE DELATE
 export class AlertifyService {
 
 constructor() { }

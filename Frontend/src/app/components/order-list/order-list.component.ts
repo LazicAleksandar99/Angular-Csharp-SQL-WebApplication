@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PendingOrder } from 'src/app/shared/models/order';
+import { AcceptOrder, PendingOrder } from 'src/app/shared/models/order';
 import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
@@ -9,6 +9,10 @@ import { OrderService } from 'src/app/shared/services/order.service';
 })
 export class OrderListComponent implements OnInit {
   orders: PendingOrder[];
+  deliverer: AcceptOrder = {
+    id: -1
+  };
+  userId: any;
 
   constructor(private orderService: OrderService) { }
 
@@ -20,12 +24,28 @@ export class OrderListComponent implements OnInit {
     this.orderService.getPendingOrder().subscribe(
       data=>{
         this.orders = data;
-        console.log(this.orders);
 
       }, error =>{
-        console.log('ERROR WITH PRODUCTS')
+        console.log('Error with orders')
       }
 
     );
+  }
+
+  Accept(id: number): void{
+    if(localStorage.getItem('verification') == 'Verified'){
+      this.userId = localStorage.getItem('id');
+      this.deliverer.id = this.userId;
+      this.orderService.acceptOrder(id,this.deliverer).subscribe(
+        data=>{
+        }, error =>{
+          console.log('Error while accepting order')
+        }
+
+      );
+    }
+    else{
+      alert('You are not verified you cant accept order')
+    }
   }
 }

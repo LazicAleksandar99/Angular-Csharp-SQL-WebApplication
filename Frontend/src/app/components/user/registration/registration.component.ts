@@ -25,10 +25,6 @@ export class RegistrationComponent implements OnInit {
 }
 
   handleAddressChange(address: any) {
-    console.log(address);
-   // this.userAddress = address.formatted_address
-   // this.userLatitude = address.geometry.location.lat()
-   // this.userLongitude = address.geometry.location.lng()
   }
 
 
@@ -51,7 +47,7 @@ export class RegistrationComponent implements OnInit {
       email: [null,[Validators.required,Validators.email]],
       firstname: [null,[Validators.required,Validators.minLength(3)]],
       lastname: [null,[Validators.required,Validators.minLength(3)]],
-      birthday: [null,[Validators.required]],
+      birthday: ["2022-05-05",[Validators.required]],
       address: [null,[Validators.required]],
       password: [null, [Validators.required, Validators.minLength(8)]],
       confirmPassword: [null, Validators.required],
@@ -79,11 +75,19 @@ export class RegistrationComponent implements OnInit {
   OnSubmit(){
     if (this.registerationForm.valid) {
       // this.user = Object.assign(this.user, this.registerationForm.value);
-         this.authService.registerUser(this.userData()).subscribe(() =>
-         {
+         this.authService.registerUser(this.userData()).subscribe(
+          data=>{
+            this.router.navigate(['/user/login']);
+          }, error =>{
+            console.log('ERROR WITH REGISTRATION')
+          }
+
+        );
+         //(() =>
+        // {
          // this.alertify.success('Congrats, you are successfully registered');
-          this.router.navigate(['/user/login']);
-       });
+        //  this.router.navigate(['/user/login']);
+      // });
     }
   }
 

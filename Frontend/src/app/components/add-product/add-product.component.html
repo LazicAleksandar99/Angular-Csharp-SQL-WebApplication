@@ -1,0 +1,53 @@
+<div class="card mb-4 shadow-lg" style="margin-top: 4cm;">
+  <div class="card-body text-center">
+    <img src="../../../assets/images/prodcuts.png" alt="avatar"
+    class="rounded-circle img-fluid" style="width: 150px;">
+    <h3>Add Product</h3>
+    <form [formGroup]="addProductForm">
+      <div class="form-outline mb-4">
+        <label for="email" class="form-label">Name</label>
+              <input type="text" class="form-control" formControlName="name">
+              <span *ngIf="!name.valid && (name.touched)" class="alert">
+                <span *ngIf="name.hasError('required')">
+                    Please provide name
+                </span>
+                <span *ngIf="name.hasError('minlength')">
+                  Please provide valid name
+                </span>
+              </span>
+      </div>
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="typePasswordX-2" >Price</label>
+        <input type="number" min="1" max="1000000" id="typePasswordX-2" class="form-control form-control-lg" formControlName="price" style="text-align:center ;"/>
+        <span *ngIf="!price.valid && (price.touched)" class="alert">
+          <span *ngIf="price.hasError('required')">
+            Please provide price
+          </span>
+        </span>
+      </div>
+
+      <div class="form-outline mb-4">
+        <label for="ingredients" class="form-label">Ingredients</label>
+              <input type="text" class="form-control" formControlName="ingredients" >
+              <span *ngIf="!ingredients.valid && (ingredients.touched)" class="alert">
+                <span *ngIf="ingredients.hasError('required')">
+                    Please provide ingredients
+                </span>
+                <span *ngIf="ingredients.hasError('minlength')">
+                  Please provide valid ingredients
+                </span>
+              </span>
+      </div>
+      <!-- Checkbox
+      <div class="form-check d-flex justify-content-start mb-4">
+        <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+        <label class="form-check-label" for="form1Example3"> Remember password </label>
+      </div> -->
+      <div class="d-flex justify-content-center mb-2">
+        <button type="button" class="btn btn-primary" style="background-color: #ffc244;color:black;" (click)="addProduct()">Add Product</button>
+      </div>
+       <!--<button class="btn btn-success" type="button" (click)="addProduct()">Add Product</button>-->
+    </form>
+  </div>
+</div>

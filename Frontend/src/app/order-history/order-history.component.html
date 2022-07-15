@@ -1,0 +1,43 @@
+<div class="grid">
+  <div class="row" style="margin-top: 2.8cm;">
+    <ng-container *ngIf="orders.length != 0">
+      <table class="table table-hover" style="background-color: #ffc244;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Content</th>
+            <th scope="col">Comment</th>
+            <th scope="col">Address</th>
+            <th scope="col">Email</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of orders; let i = index">
+            <td>{{1+i}}</td>
+            <td>{{item.content}}</td>
+            <td>{{item.comment}}</td>
+            <td>{{item.address}}</td>
+            <td>{{item.email}}</td>
+            <th>{{item.price}}</th>
+            <th>{{item.orderStatus}}</th>
+        </tr>
+        </tbody>
+      </table>
+    </ng-container>
+    <ng-container *ngIf="orders.length == 0">
+      <div class="container" style="background-color:#ffc244;">
+          <div class="card">
+              <h5 class="card-title">My order history</h5>
+          </div>
+          <div class="center">
+              <img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90" alt="">
+              <h4>Your order history is empty!</h4>
+              <h6>Take order now</h6>
+              <button routerLink="/home/dashboard" class="btn btn-primary" style="background-color: green;">Take orders</button>
+          </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

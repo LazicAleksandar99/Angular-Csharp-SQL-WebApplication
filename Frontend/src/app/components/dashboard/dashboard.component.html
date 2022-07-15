@@ -6,17 +6,23 @@
     <div class="col-6" *appHasRole="'NormalUser'">
       <app-product-list></app-product-list>
     </div>
-    <div class="col-6" *appHasRole="'Deliverer'">
-      <app-order-list></app-order-list>
-    </div>
-
     <div class="col" *appHasRole="'NormalUser'">
       <app-cart-card></app-cart-card>
       <app-current-order></app-current-order>
     </div>
-    <div class="col" *appHasRole="'Deliverer'">
+    <div class="col-6" *appHasRole="'Deliverer'">
+      <app-order-list></app-order-list>
+    </div>
+     <div class="col" *appHasRole="'Deliverer'">
+      <app-status-card></app-status-card>
       <app-current-order></app-current-order>
-      <app-current-order></app-current-order>
+    </div>
+    <div class="col-6" *appHasRole="'Admin'">
+      <app-deliverers-list></app-deliverers-list>
+      <app-all-orders></app-all-orders>
+    </div>
+    <div class="col" *appHasRole="'Admin'">
+      <app-add-product></app-add-product>
     </div>
   </div>
 </div>

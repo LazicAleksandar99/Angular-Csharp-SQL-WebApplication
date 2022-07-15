@@ -30,4 +30,8 @@ export class NavigationBarComponent implements OnInit {
     this.router.navigateByUrl('/home/cart')
   }
 
+  CheckHistory(): void{
+    this.router.navigateByUrl('/home/history')
+  }
+
 }

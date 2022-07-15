@@ -13,8 +13,4 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  hasRole(role: string): boolean {
-    return this.storageService.user.role.includes(role) || false;
-  }
-
 }

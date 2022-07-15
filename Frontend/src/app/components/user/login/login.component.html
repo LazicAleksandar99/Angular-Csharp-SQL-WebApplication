@@ -3,7 +3,7 @@
   <div class="form-outline mb-4">
     <label for="email" class="form-label">Email</label>
           <input type="text" class="form-control" formControlName="email">
-          <span *ngIf="!email.valid && (email.touched)" class="error-block">
+          <span *ngIf="!email.valid && (email.touched)" class="alert">
             <span *ngIf="email.hasError('required')">
                 Please provide email id
             </span>
@@ -16,7 +16,7 @@
   <div class="form-outline mb-4">
     <label class="form-label" for="typePasswordX-2" >Password</label>
     <input type="password" id="typePasswordX-2" class="form-control form-control-lg" formControlName="password"/>
-    <span *ngIf="!password.valid && (password.touched)" class="error-block">
+    <span *ngIf="!password.valid && (password.touched)" class="alert">
       <span *ngIf="password.hasError('required')">
         Please provide password
       </span>

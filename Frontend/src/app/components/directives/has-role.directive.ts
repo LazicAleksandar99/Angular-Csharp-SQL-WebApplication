@@ -9,8 +9,10 @@ export class HasRoleDirective{
   set appHasRole(role: string){
 
     if(this.storageService.hasRole(role)){
+
       this.viewContainerRef.createEmbeddedView(this.templateRef)
     } else{
+
       this.viewContainerRef.clear();
     }
   }

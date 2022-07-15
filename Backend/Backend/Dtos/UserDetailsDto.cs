@@ -14,5 +14,7 @@ namespace Backend.Dtos
         public DateTime Birthday { get; set; }
         public string Address { get; set; }
         public string Picture { get; set; }
+        public string Verification { get; set; }// pending, denied, verified
+
     }
 }

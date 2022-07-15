@@ -1,0 +1,26 @@
+
+<div class="card mb-4 shadow-lg" style="margin-top: 2.5cm;">
+  <div class="card-body text-center">
+
+    <!--<div *ngIf="user">-->
+      <ng-container *ngIf="verifyStatus == 'Verified'">
+        <img src="../../../assets/images/verifed.png" alt="avatar"
+        class="rounded-circle img-fluid" style="width:150px;height:130px;">
+        <h5 class="my-3">{{verifyStatus}}</h5>
+      </ng-container>
+      <ng-container *ngIf="verifyStatus == 'Denied'">
+        <img src="../../../assets/images/denied.jpg" alt="avatar"
+        class="rounded-circle img-fluid" style="width:150px;height:130px;">
+        <h5 class="my-3">{{verifyStatus}}</h5>
+      </ng-container>
+      <ng-container *ngIf="verifyStatus == 'Pending'">
+        <img src="../../../assets/images/pending.jpg" alt="avatar"
+        class="rounded-circle img-fluid" style="width:150px;height:130px;">
+        <h5 class="my-3">{{verifyStatus}}</h5>
+      </ng-container>
+
+      <h2 class="text-muted mb-1">Verification status</h2>
+
+
+  </div>
+</div>

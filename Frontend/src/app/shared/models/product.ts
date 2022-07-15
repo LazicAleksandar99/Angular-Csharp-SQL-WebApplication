@@ -5,6 +5,12 @@ export interface Product {
   ingredients: string,
 }
 
+export interface AddProduct{
+  name: string,
+  price: number,
+  ingredients: string,
+}
+
 export interface CartProduct{
   id:number,
   count: number,

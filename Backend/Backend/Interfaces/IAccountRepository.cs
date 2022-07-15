@@ -19,5 +19,9 @@ namespace Backend.Interfaces
         Task<bool> CheckUsername(long id, string username);
         Task<bool> CheckEmail(long id, string email);
         void Update(long id,UserUpdateDto userUpdate);
+        Task<IEnumerable<User>> GetAllDelivers();
+        void Verify(string username);
+        void Deny(string username);
+        Task<User> GetUserDetailsByUsername(string username);
     }
 }

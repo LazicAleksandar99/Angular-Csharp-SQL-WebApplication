@@ -1,0 +1,36 @@
+<table class="table table-hover" style="background-color: #ffc244;">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Username</th>
+      <th scope="col">Birthday</th>
+      <th scope="col">Address</th>
+      <th scope="col">Email</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let deliverer of deliverers; let i = index">
+      <td>{{1+i}}</td>
+      <td>{{deliverer.firstname}}</td>
+      <td>{{deliverer.lastname}}</td>
+      <td>{{deliverer.username}}</td>
+      <td> {{deliverer.birthday | date:'MM/dd/yyyy'}}</td>
+      <td>{{deliverer.address}}</td>
+      <th>{{deliverer.email}}</th>
+      <th>{{deliverer.verification}}</th>
+      <td>
+        <ng-container *ngIf="deliverer.verification == pending">
+           <button class="btn btn-success" (click)="Accept(deliverer.username)">Accept</button>
+           <button class="btn btn-danger" (click)="Deny(deliverer.username)">Deny</button>
+        </ng-container>
+        <ng-container *ngIf="deliverer.verification != pending">
+
+       </ng-container>
+      </td>
+  </tr>
+  </tbody>
+</table>

@@ -8,7 +8,8 @@ import { StorageService } from 'src/app/shared/services/storage.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
+  token: any;
+  id: any;
 
   constructor(private router: Router,
               private cookieService:CookieService,
@@ -19,6 +20,9 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): boolean {
     var jwt = this.cookieService.get('jwt')
     if (localStorage.getItem('token') != null){
+      this.token = localStorage.getItem('token');
+      this.id = localStorage.getItem('id');
+      this.storageService.setStorage(this.token,this.id);
 
       if(this.storageService.user.role.includes(next.data['role1']) ||
          this.storageService.user.role.includes(next.data['role2']) ||

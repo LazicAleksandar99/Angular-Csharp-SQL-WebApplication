@@ -8,6 +8,7 @@ import { ChangeUserProfileComponent } from './components/user-profile/change-use
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { UserComponent } from './components/user/user.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/user/login',pathMatch:'full'},
@@ -40,6 +41,12 @@ const routes: Routes = [
       { path: 'profile', component: ChangeUserProfileComponent, canActivate: [AuthGuard],
         data: {
           role1: "Admin",
+          role2: "Deliverer",
+          role3: "NormalUser"
+        }
+      },
+      { path: 'history', component: OrderHistoryComponent, canActivate: [AuthGuard],
+        data:{
           role2: "Deliverer",
           role3: "NormalUser"
         }

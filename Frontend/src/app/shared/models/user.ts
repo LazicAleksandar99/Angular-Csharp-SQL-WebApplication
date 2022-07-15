@@ -26,6 +26,7 @@ export interface UserDetails{
   birthday: Date;
   address: string;
   picture: string;
+  verification: string;
 }
 
 export interface UserUpdate{
@@ -44,3 +45,19 @@ export interface UserTokenModel{
   nameid: string,
   role: string,
 }
+
+export interface DelivererDetails{
+  username: string;
+  email: string;
+  firstname: string;
+  lastname: string;
+  birthday: Date;
+  address: string;
+  verification: string;
+}
+
+export interface VerifyUser{
+  username:string;
+}
+
+

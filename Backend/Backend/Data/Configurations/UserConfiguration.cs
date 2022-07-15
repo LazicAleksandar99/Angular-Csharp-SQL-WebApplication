@@ -32,7 +32,7 @@ namespace Backend.Data.Configurations
             builder.Property(x => x.Role).IsRequired(true);
             builder.Property(x => x.Birthday).IsRequired(true);
             builder.Property(x => x.Address).IsRequired(true);
-
+            builder.Property(x => x.Verification).IsRequired(true);
             //builder.Property(x => x.Registrated).IsRequired(true);
 
             //builder.HasOne(x=> x.CurrentOrder)

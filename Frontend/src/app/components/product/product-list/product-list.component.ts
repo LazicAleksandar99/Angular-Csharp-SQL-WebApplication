@@ -25,11 +25,6 @@ export class ProductListComponent implements OnInit {
       }
 
     );
-
-    console.log("OPET OVDEJ")
-
-    console.log(localStorage.getItem('id'))
-
   }
 
 }

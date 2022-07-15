@@ -4,6 +4,7 @@ import { UserTokenModel } from '../models/user';
 @Injectable({
   providedIn: 'root'
 })
+//NO USE DELATE
 export class AuthRoleService {
 
   constructor() { }

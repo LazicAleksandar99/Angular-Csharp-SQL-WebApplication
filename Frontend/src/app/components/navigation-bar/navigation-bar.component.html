@@ -26,6 +26,16 @@
               <i class="fa-solid fa-cart-shopping" ></i>  Cart
             </a>
           </li>
+          <li class="nav-item" *appHasRole="'NormalUser'">
+            <a class="nav-link active" aria-current="page" (click)="CheckHistory()">
+              <i class="fa-solid fa-landmark"></i> History
+            </a>
+          </li>
+          <li class="nav-item" *appHasRole="'Deliver'">
+            <a class="nav-link active" aria-current="page" (click)="CheckHistory()">
+              <i class="fa-solid fa-landmark"></i> History
+            </a>
+          </li>
           <br>
           <br>
           <br>
