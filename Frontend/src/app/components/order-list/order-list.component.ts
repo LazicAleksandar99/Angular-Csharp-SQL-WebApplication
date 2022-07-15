@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AcceptOrder, PendingOrder } from 'src/app/shared/models/order';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-order-list',
@@ -14,7 +15,8 @@ export class OrderListComponent implements OnInit {
   };
   userId: any;
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getPendingOrders();
@@ -38,8 +40,15 @@ export class OrderListComponent implements OnInit {
       this.deliverer.id = this.userId;
       this.orderService.acceptOrder(id,this.deliverer).subscribe(
         data=>{
+          this.toastr.success('Your order request has been successfully accepted, you can now go to work', 'Succes!', {
+            timeOut: 3000,
+            closeButton: true,
+          });
         }, error =>{
-          console.log('Error while accepting order')
+          this.toastr.error(error.error.errorMessage, 'Error!', {
+            timeOut: 3000,
+            closeButton: true,
+          });
         }
 
       );

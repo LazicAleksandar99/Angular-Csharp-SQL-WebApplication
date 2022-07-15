@@ -1,41 +1,42 @@
-<h3 class="mb-5">Sign up</h3>
-<form [formGroup]="registerationForm">
+<h3 class="mb-5 needs-validation">Sign up</h3>
+<form [formGroup]="registerationForm" class="needs-validation">
   <div class="form-outline mb-2">
     <label class="form-label" for="typeUsername-2" >Username</label>
-    <input type="text" id="typeUsername-2" class="form-control form-control-lg" formControlName="username"/>
+    <input type="text" id="typeUsername-2" class="form-control form-control-lg" formControlName="username" />
     <span *ngIf="!username.valid && (username.touched)"
-            class="alert">
+            class="alert" style="color: red;">
               Please provide username
     </span>
   </div>
 
   <div class="form-outline mb-2">
     <label class="form-label" for="typeEmailX-2" >Email</label>
-    <input type="email" id="typeEmailX-2" class="form-control form-control-lg" formControlName="email"/>
+    <input type="email" id="typeEmailX-2" class="form-control form-control-lg" formControlName="email" />
     <span *ngIf="!email.valid && (email.touched)" class="alert">
-      <span *ngIf="email.hasError('required')">
+      <span *ngIf="email.hasError('required')" style="color: red;">
           Please provide email id
       </span>
-      <span *ngIf="email.hasError('email')">
+      <span *ngIf="email.hasError('email')" style="color: red;">
         Please provide valid email id
       </span>
+      <div class="invalid-feedback"> Please provide email id</div>
     </span>
   </div>
 
   <div class="form-outline mb-2">
     <label class="form-label" for="typeName-2">First name</label>
-    <input type="text" id="typeName-2" class="form-control form-control-lg" formControlName="firstname"/>
+    <input type="text" id="typeName-2" class="form-control form-control-lg" formControlName="firstname" />
     <span *ngIf="!firstname.valid && (firstname.touched)"
-            class="alert">
+            class="alert"  style="color: red;">
               Please provide name
     </span>
    </div>
 
   <div class="form-outline mb-2">
     <label class="form-label" for="typeLastName-2">Last name</label>
-    <input type="text" id="typeLastName-2" class="form-control form-control-lg" formControlName="lastname"/>
+    <input type="text" id="typeLastName-2" class="form-control form-control-lg" formControlName="lastname" />
     <span *ngIf="!lastname.valid && (lastname.touched)"
-            class="alert">
+            class="alert"  style="color: red;">
               Please provide lastname
     </span>
   </div>
@@ -43,41 +44,44 @@
 
   <div class="form-outline mb-2">
     <label class="form-label" for="typeBirthday" >Birthday</label>
-    <input type="date" id="typeBirthday" min="1900-01-01" max="2023-01-01" value="2022-01-01" class="form-control form-control-lg" formControlName="birthday">
+    <input type="date" id="typeBirthday" min="1900-01-01" max="2023-01-01" value="2022-01-01" class="form-control form-control-lg" formControlName="birthday" >
   </div>
 
   <div class="form-outline mb-2">
     <label class="form-label" for="typeLocation-2" >Address</label>
-    <input class="form-control form-control-lg" id="typeLocation-2"  ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)" formControlName="address"/>
+    <input class="form-control form-control-lg" id="typeLocation-2"  ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)" formControlName="address" />
     <span *ngIf="!address.valid && (address.touched)"
-            class="alert">
+            class="alert"  style="color: red;">
               Please provide address
     </span>
   </div>
 
   <div class="form-outline mb-2">
     <label class="form-label" for="typePasswordX-2" >Password</label>
-    <input type="password" id="typePasswordX-2" class="form-control form-control-lg" formControlName="password"/>
-    <span *ngIf="!password.valid && (password.touched)" class="alert">
-      <span *ngIf="password.hasError('required')">
-        Please provide password
+      <input type="password" id="typePasswordX-2" class="form-control form-control-lg" formControlName="password" />
+      <span *ngIf="!password.valid && (password.touched)" class="alert">
+        <span *ngIf="password.hasError('required')" style="color: red;">
+          Please provide password
+        </span>
+        <span *ngIf="password.hasError('minlength')"  style="color: red;">
+          Password should not be lesser than 8 character
+        </span>
       </span>
-      <span *ngIf="password.hasError('minlength')">
-        Password should not be lesser than 8 character
-      </span>
-    </span>
   </div>
   <div class="form-outline mb-2">
     <label class="form-label" for="typePassword-3">Confirme password</label>
-    <input type="password" id="typePassword-3" class="form-control form-control-lg" formControlName="confirmPassword"/>
+    <input type="password" id="typePassword-3" class="form-control form-control-lg" formControlName="confirmPassword" />
   </div>
   <span  *ngIf="!confirmPassword.valid && (confirmPassword.touched)" class="alert">
-    <span *ngIf="confirmPassword.hasError('required')">
-      Please confirm password
-    </span>
-    <span *ngIf="registerationForm.hasError('notmatched') && confirmPassword.valid" class="alert">
-      Password not matched
-    </span>
+    <div class="invalid-feedback">
+      <span *ngIf="confirmPassword.hasError('required')" style="color: red;">
+        Please confirm password
+      </span>
+      <span *ngIf="registerationForm.hasError('notmatched') && confirmPassword.valid" class="alert" style="color: red;">
+        Password not matched
+      </span>
+    </div>
+
   </span>
   <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 

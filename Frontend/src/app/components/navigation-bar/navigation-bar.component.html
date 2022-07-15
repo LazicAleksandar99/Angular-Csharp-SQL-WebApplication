@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light fixed-top" style="background-color:#ffc244;">
   <div class="container-fluid" style="background-color:#ffc244;">
-    <a class="navbar-brand" style="margin-left: 2%;" (click)="CheckDashboard()">
+    <a class="navbar-brand alias" style="margin-left: 2%;" (click)="CheckDashboard()">
       <img src="../../../assets/images/homebutton1.png" alt="" width="50" height="38" class="d-inline-block align-text-top">
        BipBip
     </a>
@@ -17,22 +17,22 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" (click)="CheckProfile()">
+            <a class="nav-link active alias" aria-current="page" (click)="CheckProfile()">
               <i class="fa-regular fa-user" ></i>  Profile
             </a>
           </li>
           <li class="nav-item" *appHasRole="'NormalUser'">
-            <a class="nav-link active" aria-current="page" (click)="CheckCart()" >
+            <a class="nav-link active alias" aria-current="page" (click)="CheckCart()" >
               <i class="fa-solid fa-cart-shopping" ></i>  Cart
             </a>
           </li>
           <li class="nav-item" *appHasRole="'NormalUser'">
-            <a class="nav-link active" aria-current="page" (click)="CheckHistory()">
+            <a class="nav-link active alias" aria-current="page" (click)="CheckHistory()">
               <i class="fa-solid fa-landmark"></i> History
             </a>
           </li>
           <li class="nav-item" *appHasRole="'Deliver'">
-            <a class="nav-link active" aria-current="page" (click)="CheckHistory()">
+            <a class="nav-link active alias" aria-current="page" (click)="CheckHistory()">
               <i class="fa-solid fa-landmark"></i> History
             </a>
           </li>
@@ -40,7 +40,7 @@
           <br>
           <br>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" (click)="SignOut()">
+            <a class="nav-link active alias" aria-current="page" (click)="SignOut()">
               <i class="fa-solid fa-right-from-bracket"  ></i>  Sign out
             </a>
           </li>

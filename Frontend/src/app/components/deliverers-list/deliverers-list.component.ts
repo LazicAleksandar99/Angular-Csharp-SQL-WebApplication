@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DelivererDetails, VerifyUser } from 'src/app/shared/models/user';
 import { UserService } from 'src/app/shared/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-deliverers-list',
@@ -13,7 +14,8 @@ export class DeliverersListComponent implements OnInit {
   verifyOrDeny: VerifyUser = {
     username: ""
   };
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.pending = "Pending";
@@ -34,9 +36,15 @@ export class DeliverersListComponent implements OnInit {
     this.verifyOrDeny.username = username;
     this.userService.verifyDeliverer(this.verifyOrDeny).subscribe(
       data=>{
+        this.toastr.success('You hired another worker!', 'Succes!', {
+          timeOut: 3000,
+          closeButton: true,
+        });
       }, error =>{
-        console.log('Error ocured while verifing user');
-        console.log(username);
+        this.toastr.error(error.error.errorMessage, 'Error!', {
+          timeOut: 3000,
+          closeButton: true,
+        });
       }
 
     );
@@ -46,9 +54,15 @@ export class DeliverersListComponent implements OnInit {
     this.verifyOrDeny.username = username;
     this.userService.denyDeliverer(this.verifyOrDeny).subscribe(
       data=>{
+        this.toastr.success('You have declined a job application!', 'Succes!', {
+        timeOut: 3000,
+        closeButton: true,
+      });
       }, error =>{
-        console.log('Error ocured while denning user');
-        console.log(username);
+        this.toastr.error(error.error.errorMessage, 'Succes!', {
+          timeOut: 3000,
+          closeButton: true,
+        });
       }
 
     );

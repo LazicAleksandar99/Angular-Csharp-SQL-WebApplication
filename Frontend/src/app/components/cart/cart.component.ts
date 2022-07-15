@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { CartProduct, Product } from 'src/app/shared/models/product';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -15,7 +16,8 @@ export class CartComponent implements OnInit {
   public grandTotal !: number;
 
   constructor(private cartService: CartService,
-              private orderService: OrderService) { }
+              private orderService: OrderService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getProdcuts();
@@ -42,11 +44,21 @@ export class CartComponent implements OnInit {
     if(commentForm.valid){
       this.orderService.makeOrder(this.products,commentForm.value.comment).subscribe(
         data=>{
-
+          this.toastr.success('Your order has been succesfuly listed, sit back and wait for your delivery', 'Succes!', {
+            timeOut: 3000,
+            closeButton: true,
+          });
+          this.EmptyCart();
       }, error =>{
         console.log('Error while making order');
       }
       )
+    }
+    else{
+      this.toastr.error('Please leave a comment to your order!', 'Error!', {
+        timeOut: 3000,
+        closeButton: true,
+      });
     }
 
   }

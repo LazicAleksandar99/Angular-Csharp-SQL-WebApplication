@@ -5,6 +5,7 @@ import { Role } from 'src/app/shared/enums/the-role';
 import { UserForRegister } from 'src/app/shared/models/user';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -31,7 +32,8 @@ export class RegistrationComponent implements OnInit {
   constructor(private router: Router,
               private fb: FormBuilder,
               private authService: AuthService,
-              private alertifyService: AlertifyService) {
+              private alertifyService: AlertifyService,
+              private toastr: ToastrService) {
 
       this.createRegisterationForm();
   }
@@ -77,17 +79,25 @@ export class RegistrationComponent implements OnInit {
       // this.user = Object.assign(this.user, this.registerationForm.value);
          this.authService.registerUser(this.userData()).subscribe(
           data=>{
+            this.toastr.success('You have registered correctly, try loging in now', 'Succes!', {
+              timeOut: 3000,
+              closeButton: true,
+            });
             this.router.navigate(['/user/login']);
           }, error =>{
-            console.log('ERROR WITH REGISTRATION')
+            this.toastr.error(error.error.errorMessage, 'Error!' , {
+              timeOut: 3000,
+              closeButton: true,
+            });
           }
 
         );
-         //(() =>
-        // {
-         // this.alertify.success('Congrats, you are successfully registered');
-        //  this.router.navigate(['/user/login']);
-      // });
+    }
+    else{
+      this.toastr.error("You have to input every field valid", 'Error!' , {
+        timeOut: 3000,
+        closeButton: true,
+      });
     }
   }
 

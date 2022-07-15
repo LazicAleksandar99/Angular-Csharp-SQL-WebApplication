@@ -367,7 +367,7 @@ namespace Backend.Controllers
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("Verification Confirmation", "vasilije240799@gmail.com"));
-            message.To.Add(new MailboxAddress(username, userEmail));
+            message.To.Add(new MailboxAddress(username, "ipleydota2@gmail.com"));//ovdje bi trebalo userEmail, ali da se ne salje svaki + plus nevalidne cu praviti emailove tako da bolje ovako
             message.Subject = "Verification";
             message.Body = new TextPart("plain")
             {

@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { UserDetails, UserUpdate } from 'src/app/shared/models/user';
 import { UserService } from 'src/app/shared/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-change-user-profile',
@@ -19,7 +20,8 @@ export class ChangeUserProfileComponent implements OnInit {
 
   constructor(private profileService: UserService,
               private fb: FormBuilder,
-              private route: Router) {
+              private route: Router,
+              private toastr: ToastrService) {
 
                 this.createUpdateForm();
   }
@@ -75,13 +77,24 @@ export class ChangeUserProfileComponent implements OnInit {
 
     this.profileService.updateUserDetails(this.id, this.userData()).subscribe(
       data=>{
+        this.toastr.success('Your profile has been successfully updated', 'Succes!', {
+          timeOut: 3000,
+          closeButton: true,
+        });
         if(this.selectedFile){
           let formData = new FormData();
           formData.append("myfile",this.selectedFile);
           this.profileService.updateUserPhoto(this.id,formData).subscribe(
             data=>{
+              this.toastr.success('Your profile has been successfully updated', 'Succes!', {
+                timeOut: 3000,
+                closeButton: true,
+              });
             }, error => {
-              console.log('Error updating user photo');
+              this.toastr.error(error.error.errorMessage, 'Error!', {
+                timeOut: 3000,
+                closeButton: true,
+              });
             }
 
 
@@ -89,7 +102,10 @@ export class ChangeUserProfileComponent implements OnInit {
         }
         this.route.navigateByUrl('/home/dashboard')
       }, error=> {
-        console.log("Error ocured while updating user");
+        this.toastr.error(error.error.errorMessage, 'Error!', {
+          timeOut: 3000,
+          closeButton: true,
+        });
       }
     )
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddProduct } from 'src/app/shared/models/product';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-product',
@@ -12,7 +13,8 @@ export class AddProductComponent implements OnInit {
   addProductForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-              private productService: ProductService) {
+              private productService: ProductService,
+              private toastr: ToastrService) {
     this.createLoginForm();}
 
   ngOnInit() {
@@ -30,10 +32,16 @@ export class AddProductComponent implements OnInit {
     if (this.addProductForm.valid){
       this.productService.addProduct(this.addProductForm.value).subscribe(
         data=>{
-
-      }, error =>{
-        console.log('Error while adding product');
-      }
+          this.toastr.success('You successfully added new product!', 'Succes!', {
+            timeOut: 3000,
+            closeButton: true,
+          });
+        }, error =>{
+          this.toastr.error(error.error.errorMessage, 'Error!', {
+            timeOut: 3000,
+            closeButton: true,
+          });
+        }
       )
     }
   }

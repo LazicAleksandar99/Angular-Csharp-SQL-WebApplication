@@ -1,24 +1,27 @@
-<table class="table table-hover" style="background-color: #ffc244;">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Content</th>
-      <th scope="col">Comment</th>
-      <th scope="col">Address</th>
-      <th scope="col">User email</th>
-      <th scope="col">Price</th>
-      <th scope="col">Status</th>
+<div class="table-responsive">
+  <table class="table table-hover" style="background-color: #ffc244;display: block; height: 400px; overflow: auto;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Content</th>
+        <th scope="col">Comment</th>
+        <th scope="col">Address</th>
+        <th scope="col">User email</th>
+        <th scope="col">Price</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of orders; let i = index">
+        <td>{{1+i}}</td>
+        <td>{{item.content}}</td>
+        <td>{{item.comment}}</td>
+        <td>{{item.address}}</td>
+        <td>{{item.email}}</td>
+        <th>{{item.price}}</th>
+        <th>{{item.orderStatus}}</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of orders; let i = index">
-      <td>{{1+i}}</td>
-      <td>{{item.content}}</td>
-      <td>{{item.comment}}</td>
-      <td>{{item.address}}</td>
-      <td>{{item.email}}</td>
-      <th>{{item.price}}</th>
-      <th>{{item.orderStatus}}</th>
-  </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
+

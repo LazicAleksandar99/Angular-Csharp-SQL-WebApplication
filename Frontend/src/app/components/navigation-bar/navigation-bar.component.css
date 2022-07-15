@@ -1,0 +1,7 @@
+.alias {
+  cursor: alias;
+}
+
+a:hover {
+  background-color: rgba(236, 223, 223, 0.589);
+}

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { UserForLogin } from 'src/app/shared/models/user';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { StorageService } from 'src/app/shared/services/storage.service';
+import { ToastrService } from 'ngx-toastr';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private fb: FormBuilder,
               private authService: AuthService,
-              private storageService: StorageService) {
+              private storageService: StorageService,
+              private toastr: ToastrService) {
 
       this.createLoginForm();
   }
@@ -39,15 +42,27 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.authService.authUser(this.loginForm.value).subscribe(
         (res: any) => {
+
           this.storageService.setStorage(res.token,res.id);
+          this.toastr.success('You are now loged in. Welcome!', 'Succes!', {
+            timeOut: 3000,
+            closeButton: true,
+          });
           this.router.navigateByUrl('/home/dashboard');
         },
         err => {
-          if (err.status == 400)
-           // this.toastr.error('Incorrect username or password.', 'Authentication failed.');
-           console.log(err);
-          else
-            console.log(err);
+          if (err.status == 400){
+            this.toastr.error(err.error.errorMessage, 'Error!' , {
+              timeOut: 3000,
+              closeButton: true,
+            });
+          }
+          else{
+            this.toastr.error(err.error.errorMessage, 'Error!' , {
+              timeOut: 3000,
+              closeButton: true,
+            });
+          }
         }
     );
     }
