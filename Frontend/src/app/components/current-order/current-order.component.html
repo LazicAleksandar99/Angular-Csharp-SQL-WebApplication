@@ -18,10 +18,11 @@
             <td>{{item.address}}</td>
             <th>{{item.price}}</th>
 
-            <th>{{item.stopwatch}} minuts left</th>
+            <th><countdown #cd [config]="config" (event)="handleEvent($event)"></countdown></th>
         </tr>
         </tbody>
       </table>
+
     </ng-container>
     <ng-container *ngIf="orders.length == 0">
       <img src="../../../assets/images/order-now.jpg" style="width:200px;height: 200px;" >
