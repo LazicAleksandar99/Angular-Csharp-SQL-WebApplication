@@ -54,7 +54,10 @@ export class OrderListComponent implements OnInit {
       );
     }
     else{
-      alert('You are not verified you cant accept order')
+      this.toastr.error('You are not verified', 'Error!', {
+        timeOut: 3000,
+        closeButton: true,
+      });
     }
   }
 }

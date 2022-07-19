@@ -77,7 +77,7 @@ namespace Backend.Controllers
         }
 
         //gotova provjera
-        [HttpPost("register")]
+        [HttpPost("register")]  
         [AllowAnonymous]
         public async Task<IActionResult> Register(RegistrationDto newAccount)
         {
@@ -155,7 +155,8 @@ namespace Backend.Controllers
 
             uow.AccountRepository.Register(newAccount);
             await uow.SaveAsync();
-            return StatusCode(201);
+            var newUser = await uow.AccountRepository.GetUserDetailsByUsername(newAccount.Username);
+            return Ok(newUser.Id);
         }
 
         //gotova provjera
@@ -257,6 +258,7 @@ namespace Backend.Controllers
 
         //gotova provjera
         [HttpPost("photo/{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> AddPhoto([FromForm(Name = "myfile")] IFormFile file, long id)
         {
             var result = await photoService.UploadPhotoAsync(file);

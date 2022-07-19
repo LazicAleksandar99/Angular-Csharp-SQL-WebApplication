@@ -6,6 +6,7 @@ import { UserForRegister } from 'src/app/shared/models/user';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -16,9 +17,10 @@ export class RegistrationComponent implements OnInit {
   alertify: any;
   title = 'google-places-autocomplete';
   registerationForm: FormGroup ;
-  //currentdate = Date.now('yyyy-mm-dd');
+  selectedFile: File;
   user: UserForRegister;
   userRole: Role;
+  id: any;
   options={
     componentRestrictions:{
     country:["AU"]
@@ -33,7 +35,8 @@ export class RegistrationComponent implements OnInit {
               private fb: FormBuilder,
               private authService: AuthService,
               private alertifyService: AlertifyService,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private profileService: UserService) {
 
       this.createRegisterationForm();
   }
@@ -83,6 +86,26 @@ export class RegistrationComponent implements OnInit {
               timeOut: 3000,
               closeButton: true,
             });
+            this.id = data;
+            if(this.selectedFile){
+              let formData = new FormData();
+              formData.append("myfile",this.selectedFile);
+              this.profileService.updateUserPhoto(this.id,formData).subscribe(
+                data=>{
+                  this.toastr.success('Your profile has been successfully updated', 'Succes!', {
+                    timeOut: 3000,
+                    closeButton: true,
+                  });
+                }, error => {
+                  this.toastr.error(error.error.errorMessage, 'Error!', {
+                    timeOut: 3000,
+                    closeButton: true,
+                  });
+                }
+
+
+              );
+            }
             this.router.navigate(['/user/login']);
           }, error =>{
             this.toastr.error(error.error.errorMessage, 'Error!' , {
@@ -113,6 +136,10 @@ export class RegistrationComponent implements OnInit {
         password: this.password.value,
         picture: ""
     };
+  }
+
+  onFileChanged(imageInput: any){
+    this.selectedFile = imageInput.files[0];
   }
 
   get username() {

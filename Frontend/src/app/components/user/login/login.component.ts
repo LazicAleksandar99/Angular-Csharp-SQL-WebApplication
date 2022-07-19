@@ -89,10 +89,17 @@ export class LoginComponent implements OnInit {
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail());
         localStorage.setItem('token', googleAuthUser.getAuthResponse().id_token);
+        localStorage.setItem('id', profile.getId());
+
+        this.storageService.setStorage(googleAuthUser.getAuthResponse().id_token,profile.getId());
+
        /* Write Your Code Here */
-       this.router.navigateByUrl('/home');
+       this.router.navigateByUrl('/home/dashboard');
       }, (error:any) => {
-        alert(JSON.stringify(error, undefined, 2));
+        this.toastr.error(error.error.errorMessage, 'Error!' , {
+          timeOut: 3000,
+          closeButton: true,
+        });
       });
 
   }

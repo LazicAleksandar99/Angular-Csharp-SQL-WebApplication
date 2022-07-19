@@ -178,7 +178,7 @@ namespace Backend.Controllers
                 return BadRequest(apiError);
             }
 
-            if (await uow.OrderRepository.ChekIfDelivererIsWorking(deliverer.Id))
+            if (await uow.OrderRepository.ChekIfDelivererIsVerifed(deliverer.Id))
             {
                 apiError.ErrorCode = BadRequest().StatusCode;
                 apiError.ErrorMessage = "Deliverer is not verifed";

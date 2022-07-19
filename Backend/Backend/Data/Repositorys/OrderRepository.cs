@@ -97,7 +97,7 @@ namespace Backend.Data.Repositorys
 
         public async Task<bool> ChekIfDelivererIsVerifed(long id)
         {
-            return await dsdc.Users.AnyAsync(x => x.Verification == "Verified");
+            return await dsdc.Users.AnyAsync(x => x.Verification != "Verified" && x.Id == id);
         }
     }
 }

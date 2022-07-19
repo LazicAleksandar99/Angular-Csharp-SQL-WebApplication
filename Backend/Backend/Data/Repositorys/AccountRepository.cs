@@ -38,7 +38,6 @@ namespace Backend.Data.Repositorys
         public void Register(RegistrationDto newAccount)
         {
             byte[] passwordHash, passwordKey;
-            
 
             using (var hmac = new HMACSHA512())
             {
@@ -46,7 +45,6 @@ namespace Backend.Data.Repositorys
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(newAccount.Password));
 
             }
-
 
             User user = new User();
             user.Username = newAccount.Username;
@@ -116,7 +114,6 @@ namespace Backend.Data.Repositorys
             return ret;
         }
 
-
         public async Task<bool> CheckUsername(long id, string username)
         {
             bool ret = false;
@@ -126,6 +123,7 @@ namespace Backend.Data.Repositorys
                 ret = true;
             return ret;
         }
+
         public async Task<bool> CheckEmail(long id, string email)
         {
             bool ret = false;
@@ -151,8 +149,7 @@ namespace Backend.Data.Repositorys
                     user.Password = passwordHash;
                     user.PasswordKey = passwordKey;
                 }
-            }
-            
+            }  
             user.Address = userUpdate.Address;
             user.Birthday = userUpdate.Birthday;
             user.Email = userUpdate.Email;
@@ -165,11 +162,13 @@ namespace Backend.Data.Repositorys
         {
             return await dsdc.Users.Where(x => x.Verification != "").ToListAsync();
         }
+
         public void Verify(string username)
         {
             var user = dsdc.Users.SingleOrDefault(x => x.Username == username);
             user.Verification = "Verified";
         }
+
         public void Deny(string username)
         {
             var user = dsdc.Users.SingleOrDefault(x => x.Username == username);

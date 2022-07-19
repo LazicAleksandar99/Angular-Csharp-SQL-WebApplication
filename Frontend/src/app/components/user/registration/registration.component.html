@@ -83,6 +83,12 @@
     </div>
 
   </span>
+
+  <div class="form-outline mb-2">
+    <label class="form-label" for="typePassword-3">Chose profile picture</label>
+    <input type="file" #imageInput class="file-upload" accept="image/*" (change)="onFileChanged(imageInput)" onchange="console.log(event.target.files)">
+  </div>
+
   <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 
     <button class="btn btn-primary btn-lg btn-block" type="button" (click)="onSubmitUser()">Sign up</button>
