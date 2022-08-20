@@ -47,6 +47,7 @@ namespace Backend
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IPhotoService, PhotoService>();
 
             var secretKey = Configuration.GetSection("AppSettings:Key").Value;
