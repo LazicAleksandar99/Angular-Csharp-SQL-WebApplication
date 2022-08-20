@@ -23,22 +23,10 @@ namespace Backend.Controllers
     [Authorize]
     public class AccountController : BaseController
     {
-        private readonly IUnitOfWork uow;
-        private readonly IConfiguration configuration;
-        private readonly IMapper mapper;
-        private readonly IPhotoService photoService;
         private readonly IAccountService accountService;
 
-        public AccountController(IUnitOfWork uow, 
-                                IConfiguration configuration, 
-                                IMapper mapper,
-                                IPhotoService photoService,
-                                IAccountService accountService)
+        public AccountController(IAccountService accountService)
         {
-            this.uow = uow;
-            this.configuration = configuration;
-            this.mapper = mapper;
-            this.photoService = photoService;
             this.accountService = accountService;
         }
 
@@ -172,64 +160,6 @@ namespace Backend.Controllers
             else
             {
                 return StatusCode(201);
-            }
-        }
-
-        private string CreateJWT(User user)
-        {
-            var secretKey = configuration.GetSection("AppSettings:Key").Value;
-            var key = new SymmetricSecurityKey(Encoding.UTF8
-                .GetBytes(secretKey));
-
-            var claims = new Claim[] {
-                new Claim(ClaimTypes.Name,user.Username),
-                new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
-                new Claim(ClaimTypes.Role,user.Role.ToString())
-            };
-
-            var signingCredentials = new SigningCredentials(
-                    key, SecurityAlgorithms.HmacSha256Signature);
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(30),
-                SigningCredentials = signingCredentials
-            };
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
-        }
-        private void sendEmail(string username, string userEmail,string text)
-        {
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Verification Confirmation", "vasilije240799@gmail.com"));
-            message.To.Add(new MailboxAddress(username, "ipleydota2@gmail.com"));//ovdje bi trebalo userEmail, ali da se ne salje svaki + plus nevalidne cu praviti emailove tako da bolje ovako
-            message.Subject = "Verification";
-            message.Body = new TextPart("plain")
-            {
-                Text = text 
-            };
-
-            using (var client = new SmtpClient())
-            {
-                try
-                {
-                    client.Connect("smtp.gmail.com", 465, true);
-                    client.AuthenticationMechanisms.Remove("XOAUTH2");
-                    client.Authenticate("vasilije240799@gmail.com", "hijipitqgequumcb");
-                    client.Send(message);
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-                finally
-                {
-                    client.Disconnect(true);
-                    client.Dispose();
-                }
             }
         }
     }

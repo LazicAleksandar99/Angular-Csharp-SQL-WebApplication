@@ -17,22 +17,21 @@ namespace Backend.Controllers
     {
         private readonly IUnitOfWork uow;
         private readonly IMapper mapper;
+        private readonly IProductService productService;
 
-        public ProductController(IUnitOfWork uow, IMapper mapper)
+        public ProductController(IUnitOfWork uow, IMapper mapper, IProductService productService)
         {
             this.uow = uow;
             this.mapper = mapper;
+            this.productService = productService;
         }
 
-        //gotova provjera
+        //Sta ako nema jos uvijek ni jedan produkt?
         [HttpGet("list")]
         [Authorize(Roles = "Admin,NormalUser")]
         public async Task<IActionResult> GetProducts()
         {
-            var products = await uow.ProductRepository.GetProductsAsync();
-
-            var productsDto = mapper.Map<IEnumerable<ProductDto>>(products);
-            return Ok(productsDto);
+            return Ok(await productService.GetProducts());
         }
 
         //gotova provjera
@@ -40,34 +39,17 @@ namespace Backend.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddProduct(NewProductDto newProduct)
         {
-            ApiError apiError = new ApiError();
+            var result = await productService.AddProduct(newProduct);
 
-            if (String.IsNullOrWhiteSpace(newProduct.Name) || newProduct.Name.Length < 2)
+            if (result is ApiError)
             {
-                apiError.ErrorCode = BadRequest().StatusCode;
-                apiError.ErrorMessage = "Product name not valid";
+                ApiError apiError = (ApiError)result;
                 return BadRequest(apiError);
             }
-
-            if (newProduct.Price < 0 || newProduct.Price > 1000000)
+            else
             {
-                apiError.ErrorCode = BadRequest().StatusCode;
-                apiError.ErrorMessage = "Price not valid";
-                return BadRequest(apiError);
+                return StatusCode(201);
             }
-
-            if (String.IsNullOrWhiteSpace(newProduct.Ingredients) || newProduct.Ingredients.Length < 2)
-            {
-                apiError.ErrorCode = BadRequest().StatusCode;
-                apiError.ErrorMessage = "Ingredients name not valid";
-                return BadRequest(apiError);
-            }
-
-            var newProd = mapper.Map<Product>(newProduct);
-
-            uow.ProductRepository.AddProduct(newProd);
-            await uow.SaveAsync();
-            return Ok(201);
         }
     }
 }
