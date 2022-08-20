@@ -1,13 +1,8 @@
-﻿using AutoMapper;
-using Backend.Dtos;
+﻿using Backend.Dtos;
 using Backend.Errors;
 using Backend.Interfaces;
-using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Backend.Controllers
@@ -15,14 +10,10 @@ namespace Backend.Controllers
     [Authorize]
     public class OrderController : BaseController
     {
-        private readonly IUnitOfWork uow;
-        private readonly IMapper mapper;
         private readonly IOrderService orderService;
 
-        public OrderController(IUnitOfWork uow, IMapper mapper, IOrderService orderService)
+        public OrderController(IOrderService orderService)
         {
-            this.uow = uow;
-            this.mapper = mapper;
             this.orderService = orderService;
         }
 
