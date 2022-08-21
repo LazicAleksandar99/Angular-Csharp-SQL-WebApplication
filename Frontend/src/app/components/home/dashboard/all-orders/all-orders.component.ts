@@ -21,7 +21,7 @@ export class AllOrdersComponent implements OnInit {
       data=>{
         this.orders = data;
       }, error =>{
-        console.log('Error with orders')
+        console.log('Error occurred at all-orders.component.ts')
       }
 
     );

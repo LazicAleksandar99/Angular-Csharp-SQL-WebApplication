@@ -26,9 +26,8 @@ export class DeliverersListComponent implements OnInit {
       data=>{
         this.deliverers = data;
       }, error =>{
-        console.log('ERROR WITH DELIVERERS')
+        console.log('Error occurred at deliverers-list.component.ts')
       }
-
     );
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AcceptOrder, PendingOrder } from 'src/app/shared/models/order';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-order-list',
@@ -10,13 +11,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class OrderListComponent implements OnInit {
   orders: PendingOrder[];
+  token: any;
   deliverer: AcceptOrder = {
     id: -1
   };
   userId: any;
 
   constructor(private orderService: OrderService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.getPendingOrders();
@@ -26,17 +29,16 @@ export class OrderListComponent implements OnInit {
     this.orderService.getPendingOrder().subscribe(
       data=>{
         this.orders = data;
-
       }, error =>{
-        console.log('Error with orders')
+        console.log('Error occurred at order-list.component.ts')
       }
-
     );
   }
 
   Accept(id: number): void{
-    if(localStorage.getItem('verification') == 'Verified'){
-      this.userId = localStorage.getItem('id');
+    this.token = localStorage.getItem('token');
+    if(this.authService.getUserVerificationStatus(this.token) == 'Verified'){
+      this.userId = this.authService.getUserId(this.token);
       this.deliverer.id = this.userId;
       this.orderService.acceptOrder(id,this.deliverer).subscribe(
         data=>{

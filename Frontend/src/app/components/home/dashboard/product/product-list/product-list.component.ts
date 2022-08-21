@@ -10,18 +10,15 @@ import { ProductService } from 'src/app/shared/services/product.service';
 export class ProductListComponent implements OnInit {
   products: Product[];
   page: number = 1;
-  token: any;
+
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.token = localStorage.getItem('token');
     this.productService.getAllProducts().subscribe(
       data=>{
         this.products = data;
-
-
       }, error =>{
-        console.log('ERROR WITH PRODUCTS')
+        console.log('Error occurred at product-list.comp.ts')
       }
 
     );

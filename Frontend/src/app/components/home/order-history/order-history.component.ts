@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { StatusOrder } from '../shared/models/order';
-import { OrderService } from '../shared/services/order.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { StatusOrder } from '../../../shared/models/order';
+import { OrderService } from '../../../shared/services/order.service';
 
 @Component({
   selector: 'app-order-history',
@@ -11,19 +12,23 @@ import { OrderService } from '../shared/services/order.service';
 export class OrderHistoryComponent implements OnInit {
   orders: StatusOrder[];
   id: any;
-  constructor(private orderService: OrderService, private router: Router) { }
+  token: any;
+  constructor(private orderService: OrderService,
+              private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.getOrderHistory();
   }
 
   getOrderHistory(): void{
-    this.id = localStorage.getItem("id");
+    this.token = localStorage.getItem('token');
+    this.id = this.authService.getUserId(this.token);
     this.orderService.getOrderHistory(this.id).subscribe(
       data => {
          this.orders = data;
       }, error =>{
-        console.log('Error with order history')
+        console.log('Error occurred at order-history.component.ts')
       }
     );
   }

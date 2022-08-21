@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@a
 import { Router } from '@angular/router';
 import { Role } from 'src/app/shared/enums/the-role';
 import { UserForRegister } from 'src/app/shared/models/user';
-import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -30,11 +29,9 @@ export class RegistrationComponent implements OnInit {
   handleAddressChange(address: any) {
   }
 
-
   constructor(private router: Router,
               private fb: FormBuilder,
               private authService: AuthService,
-              private alertifyService: AlertifyService,
               private toastr: ToastrService,
               private profileService: UserService) {
 
@@ -42,7 +39,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
-
 
   }
 
@@ -59,8 +55,6 @@ export class RegistrationComponent implements OnInit {
     },{validators: this.passwordMatchingValidatior});
 
   }
-
-
 
   passwordMatchingValidatior(fg: FormGroup): Validators {
       return fg.get('password')?.value === fg.get('confirmPassword')?.value ? true : {notmatched: true};
@@ -79,7 +73,6 @@ export class RegistrationComponent implements OnInit {
 
   OnSubmit(){
     if (this.registerationForm.valid) {
-      // this.user = Object.assign(this.user, this.registerationForm.value);
          this.authService.registerUser(this.userData()).subscribe(
           data=>{
             this.toastr.success('You have registered correctly, try loging in now', 'Succes!', {

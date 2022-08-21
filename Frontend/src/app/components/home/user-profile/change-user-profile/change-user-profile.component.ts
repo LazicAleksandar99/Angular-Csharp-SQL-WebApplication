@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserDetails, UserUpdate } from 'src/app/shared/models/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-change-user-profile',
@@ -15,13 +16,15 @@ export class ChangeUserProfileComponent implements OnInit {
   user: UserDetails;
   updatedUser: UserUpdate;
   id: any;
+  token: any;
   selectedFile: File
   updateForm: FormGroup ;
 
   constructor(private profileService: UserService,
               private fb: FormBuilder,
               private route: Router,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private authService: AuthService) {
 
                 this.createUpdateForm();
   }
@@ -47,7 +50,8 @@ export class ChangeUserProfileComponent implements OnInit {
 
 
   getUserDetails(){
-    this.id = localStorage.getItem('id');
+    this.token = localStorage.getItem('token');
+    this.id = this.authService.getUserId(this.token);//localStorage.getItem('id');//
 
     this.profileService.getUserDetails(this.id).subscribe(
       data=>{
@@ -62,7 +66,7 @@ export class ChangeUserProfileComponent implements OnInit {
         this.updateForm.controls['birthday'].setValue(formatDate(this.user.birthday,'yyyy-MM-dd','en'));
 
       }, error =>{
-        console.log('Profile change user details error')
+        console.log('Error occurred at change-user-profile.component.ts')
       }
 
     );
@@ -73,7 +77,6 @@ export class ChangeUserProfileComponent implements OnInit {
   }
 
   SaveChanges(): void {
-    //ice prvo update ostalo pa onda update slike
 
     this.profileService.updateUserDetails(this.id, this.userData()).subscribe(
       data=>{

@@ -24,8 +24,6 @@ export class CurrentOrderComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentOrder();
-
-  // let value = +localStorage.getItem(KEY)!! ?? DEFAULT
   }
 
   getCurrentOrder(): void{
@@ -38,17 +36,13 @@ export class CurrentOrderComponent implements OnInit {
           var time = new Date();
           this.endTime = new Date(child.deliveryTime);
           child.stopwatch = Math.ceil(Math.abs(time.getTime()- this.endTime.getTime()) / 36e5*60);
-
           this.minutes = (Math.abs(this.endTime.getTime() - time.getTime()) / (1000 * 60) % 60);
           this.seconds = (Math.abs(this.endTime.getTime() - time.getTime()) / (1000) % 60);
-          console.log("Minuts: " + this.minutes);
-          console.log("Seconds: " + this.seconds);
-          let allSeconds = (this.minutes * 60)
-          console.log('allSeconds: ' + allSeconds);
+          let allSeconds = (this.minutes * 60);
           this.config = { ...this.config, leftTime: Math.ceil(allSeconds) };
           }
       }, error =>{
-        console.log('Error with orders')
+        console.log('Error occurred at current-order.component.ts')
       }
     );
   }

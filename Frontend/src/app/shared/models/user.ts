@@ -44,6 +44,7 @@ export interface UserTokenModel{
   unique_name: string,
   nameid: string,
   role: string,
+  authentication: string,
 }
 
 export interface DelivererDetails{

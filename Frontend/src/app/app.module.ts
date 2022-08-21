@@ -21,22 +21,22 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { UserComponent } from './components/user/user.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ProductListComponent } from './components/product/product-list/product-list.component';
-import { ProductCardComponent } from './components/product/product-card/product-card.component';
-import { ShowUserProfileComponent } from './components/user-profile/show-user-profile/show-user-profile.component';
-import { ChangeUserProfileComponent } from './components/user-profile/change-user-profile/change-user-profile.component';
-import { CurrentOrderComponent } from './components/current-order/current-order.component';
-import { CartCardComponent } from './components/cart-card/cart-card.component';
-import { CartComponent } from './components/cart/cart.component';
+import { DashboardComponent } from './components/home/dashboard/dashboard.component';
+import { ProductListComponent } from './components/home/dashboard/product/product-list/product-list.component';
+import { ProductCardComponent } from './components/home/dashboard/product/product-card/product-card.component';
+import { ShowUserProfileComponent } from './components/home/dashboard/show-user-profile/show-user-profile.component';
+import { ChangeUserProfileComponent } from './components/home/user-profile/change-user-profile/change-user-profile.component';
+import { CurrentOrderComponent } from './components/home/dashboard/current-order/current-order.component';
+import { CartCardComponent } from './components/home/dashboard/cart-card/cart-card.component';
+import { CartComponent } from './components/home/cart/cart.component';
 import { HomeComponent } from './components/home/home.component';
 import { HasRoleDirective } from './components/directives/has-role.directive';
-import { OrderListComponent } from './components/order-list/order-list.component';
-import { DeliverersListComponent } from './components/deliverers-list/deliverers-list.component';
-import { AddProductComponent } from './components/add-product/add-product.component';
-import { AllOrdersComponent } from './components/all-orders/all-orders.component';
-import { StatusCardComponent } from './components/status-card/status-card.component';
-import { OrderHistoryComponent } from './order-history/order-history.component';
+import { OrderListComponent } from './components/home/dashboard/order-list/order-list.component';
+import { DeliverersListComponent } from './components/home/dashboard/deliverers-list/deliverers-list.component';
+import { AddProductComponent } from './components/home/dashboard/add-product/add-product.component';
+import { AllOrdersComponent } from './components/home/dashboard/all-orders/all-orders.component';
+import { StatusCardComponent } from './components/home/dashboard/status-card/status-card.component';
+import { OrderHistoryComponent } from './components/home/order-history/order-history.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +60,7 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
     AddProductComponent,
     AllOrdersComponent,
     StatusCardComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
    ],
   imports: [
     BrowserModule,

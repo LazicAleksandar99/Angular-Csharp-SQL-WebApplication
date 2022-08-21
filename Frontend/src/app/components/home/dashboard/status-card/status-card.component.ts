@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-status-card',
@@ -7,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatusCardComponent implements OnInit {
   verifyStatus: any;
+  token: any;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.verifyStatus = localStorage.getItem('verification');
+    this.token = localStorage.getItem('token');
+    this.verifyStatus = this.authService.getUserVerificationStatus(this.token);
   }
 
 }

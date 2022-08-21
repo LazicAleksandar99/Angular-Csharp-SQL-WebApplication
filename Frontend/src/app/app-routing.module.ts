@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './components/auth/auth.guard';
-import { CartComponent } from './components/cart/cart.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CartComponent } from './components/home/cart/cart.component';
+import { DashboardComponent } from './components/home/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
-import { ChangeUserProfileComponent } from './components/user-profile/change-user-profile/change-user-profile.component';
+import { ChangeUserProfileComponent } from './components/home/user-profile/change-user-profile/change-user-profile.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { UserComponent } from './components/user/user.component';
-import { OrderHistoryComponent } from './order-history/order-history.component';
+import { OrderHistoryComponent } from './components/home/order-history/order-history.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/user/login',pathMatch:'full'},

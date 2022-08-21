@@ -50,12 +50,12 @@ export class CartComponent implements OnInit {
           });
           this.EmptyCart();
       }, error =>{
-        console.log('Error while making order');
+        console.log('Error occurred at cart.component.ts');
       }
       )
     }
     else{
-      this.toastr.error('Please leave a comment to your order!', 'Error!', {
+      this.toastr.info('Please leave a comment to your order!', 'Important!', {
         timeOut: 3000,
         closeButton: true,
       });

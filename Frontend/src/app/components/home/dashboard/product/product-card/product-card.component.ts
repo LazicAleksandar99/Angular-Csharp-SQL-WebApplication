@@ -34,7 +34,7 @@ export class ProductCardComponent {
       total: item.price*this.quantity
     }
     this.cartService.addtoCart(product);
-    this.toastr.success(this.quantity + ' - ' + item.name + ' have been succesfuly added to your cart' , 'Error!' , {
+    this.toastr.success(this.quantity + ' - ' + item.name + ' have been succesfuly added to your cart' , 'Success!' , {
       timeOut: 3000,
       closeButton: true,
     });

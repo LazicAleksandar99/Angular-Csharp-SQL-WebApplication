@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { UserDetails } from 'src/app/shared/models/user';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -11,22 +12,26 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class ShowUserProfileComponent implements OnInit {
   user: UserDetails;
   id: any;
+  token: any;
 
-  constructor(private route: Router, private profileService: UserService) { }
+  constructor(private route: Router,
+              private profileService: UserService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.getUserDetails();
   }
 
   getUserDetails(){
-    this.id = localStorage.getItem('id');
+    this.token = localStorage.getItem('token');
+    this.id = this.authService.getUserId(this.token);
 
     this.profileService.getUserDetails(this.id).subscribe(
       data=>{
         this.user = data;
-        localStorage.setItem('verification',this.user.verification);
+        //ovdje sam postavio verification ali to ne treba vise
       }, error =>{
-        console.log('USER DETAILS')
+        console.log('Error occurred at show-user-profile.component.ts')
       }
 
     );

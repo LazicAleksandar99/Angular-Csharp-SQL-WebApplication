@@ -1,5 +1,5 @@
 import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
-import { StorageService } from 'src/app/shared/services/storage.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Directive({
   selector: '[appHasRole]'
@@ -8,7 +8,7 @@ export class HasRoleDirective{
   @Input()
   set appHasRole(role: string){
 
-    if(this.storageService.hasRole(role)){
+    if(this.authService.hasRole(role)){
 
       this.viewContainerRef.createEmbeddedView(this.templateRef)
     } else{
@@ -16,6 +16,8 @@ export class HasRoleDirective{
       this.viewContainerRef.clear();
     }
   }
-  constructor(private templateRef: TemplateRef<any>, private viewContainerRef: ViewContainerRef,private storageService: StorageService) { }
+  constructor(private templateRef: TemplateRef<any>,
+              private viewContainerRef: ViewContainerRef,
+              private authService: AuthService) { }
 
 }

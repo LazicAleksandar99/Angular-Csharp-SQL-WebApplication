@@ -67,7 +67,6 @@ namespace Backend.Services
             loginRes.Token = CreateJWT(user);
             return loginRes; //Ok(loginRes);
         }
-
         public async Task<Object> Register(RegistrationDto newAccount)
         {
             ApiError apiError = new ApiError();
@@ -146,7 +145,6 @@ namespace Backend.Services
             var newUser = await uow.AccountRepository.GetUserDetailsByUsername(newAccount.Username);//je l' ovo potrebno..
             return newUser.Id;
         }
-
         public async Task<Object> Update(UserUpdateDto user, long id)
         {
             ApiError apiError = new ApiError();
@@ -231,8 +229,7 @@ namespace Backend.Services
 
             await uow.SaveAsync();
             return 201;//else
-        }
-        
+        }   
         public async Task<Object> GetUserDetail(long id)
         {
             ApiError apiError = new ApiError();
@@ -248,7 +245,6 @@ namespace Backend.Services
             var userDetailsDto = mapper.Map<UserDetailsDto>(user);
             return userDetailsDto;
         }
-
         public async Task<Object> AddPhoto(IFormFile file, long id)
         {
             var result = await photoService.UploadPhotoAsync(file);
@@ -268,7 +264,6 @@ namespace Backend.Services
 
             return deliversDto;
         }
-
         public async Task<Object> Verify(VrifyDto user)
         {
             ApiError apiError = new ApiError();
@@ -292,7 +287,6 @@ namespace Backend.Services
             await uow.SaveAsync();
             return 201;
         }
-
         public async Task<Object> Deny(VrifyDto user)
         {
             ApiError apiError = new ApiError();
@@ -326,7 +320,8 @@ namespace Backend.Services
             var claims = new Claim[] {
                 new Claim(ClaimTypes.Name,user.Username),
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
-                new Claim(ClaimTypes.Role,user.Role.ToString())
+                new Claim(ClaimTypes.Role,user.Role.ToString()),
+                new Claim(ClaimTypes.Authentication,user.Verification)
             };
 
             var signingCredentials = new SigningCredentials(
@@ -343,7 +338,6 @@ namespace Backend.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
-      
         private void sendEmail(string username, string userEmail,string text)
         {
             var message = new MimeMessage();

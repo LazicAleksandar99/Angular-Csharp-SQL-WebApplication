@@ -1,4 +1,6 @@
-﻿namespace Backend.Dtos
+﻿using System;
+
+namespace Backend.Dtos
 {
     public class CurrentOrderDto
     {
