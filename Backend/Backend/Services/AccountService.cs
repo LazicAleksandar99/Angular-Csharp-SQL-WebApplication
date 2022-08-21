@@ -73,56 +73,56 @@ namespace Backend.Services
 
             if (String.IsNullOrWhiteSpace(newAccount.Username) || String.IsNullOrWhiteSpace(newAccount.Password))
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "User name or password can not be blank";
                 return apiError;
             }
 
             if (await uow.AccountRepository.UsernameAlreadyExists(newAccount.Username))
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "User already exists, please try different user name";
                 return apiError;
             }
 
             if (String.IsNullOrWhiteSpace(newAccount.Email))
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Email can not be blank";
                 return apiError;
             }
 
             if (await uow.AccountRepository.EmailAlreadyExists(newAccount.Email))
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Email already exists, please try different email";
                 return apiError;
             }
 
             if (String.IsNullOrWhiteSpace(newAccount.Firstname) || newAccount.Firstname.Length < 3)
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Firstname can not be blank or less then 3 characters";
                 return apiError;
             }
 
             if (String.IsNullOrWhiteSpace(newAccount.Lastname) || newAccount.Lastname.Length < 3)
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Lastname can not be blank or less then 3 characters";
                 return apiError;
             }
 
             if (String.IsNullOrWhiteSpace(newAccount.Password) || newAccount.Password.Length < 8)
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Password can not be blank or less then 8 characters";
                 return apiError;
             }
 
             if (newAccount.Birthday < new DateTime(1900, 1, 1) || newAccount.Birthday > DateTime.Now.Date)//provjeriti u nekom jos dobu dali je uvijek tacno datum posto mozda ide po Londonu i onda sat vremena nije tacno..
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Persons birthday has to be between 1900.01.01 and current date";
                 return apiError;
             }
@@ -135,7 +135,7 @@ namespace Backend.Services
 
             if (String.IsNullOrWhiteSpace(newAccount.Address) || newAccount.Address.Length < 3)
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Address can not be blank or less then 3 characters";
                 return apiError;
             }
@@ -321,7 +321,7 @@ namespace Backend.Services
                 new Claim(ClaimTypes.Name,user.Username),
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
                 new Claim(ClaimTypes.Role,user.Role.ToString()),
-                new Claim(ClaimTypes.Authentication,user.Verification)
+                new Claim(ClaimTypes.GivenName,user.Verification)
             };
 
             var signingCredentials = new SigningCredentials(

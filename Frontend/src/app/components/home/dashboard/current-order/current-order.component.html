@@ -1,34 +1,36 @@
 
 <div class="card mb-4 shadow-lg" style="margin-top: 2.5cm;">
   <div class="card-body text-center table-responsive">
-    <ng-container *ngIf="orders.length != 0">
-      <h2 style="background-color: #ffc244;">Orders</h2>
-      <table class="table table-hover" style="background-color: #ffc244;">
-        <thead>
-          <tr>
-            <th scope="col">Content</th>
-            <th scope="col">Address</th>
-            <th scope="col">Price</th>
-            <th scope="col">Time</th>
+
+      <ng-container *ngIf="orders && (orders.length != 0)">
+        <h2 style="background-color: #ffc244;">Orders</h2>
+        <table class="table table-hover" style="background-color: #ffc244;">
+          <thead>
+            <tr>
+              <th scope="col">Content</th>
+              <th scope="col">Address</th>
+              <th scope="col">Price</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of orders;">
+              <td>{{item.content}}</td>
+              <td>{{item.address}}</td>
+              <th>{{item.price}}</th>
+
+              <th><countdown #cd [config]="config" (event)="handleEvent($event)"></countdown></th>
           </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of orders;">
-            <td>{{item.content}}</td>
-            <td>{{item.address}}</td>
-            <th>{{item.price}}</th>
+          </tbody>
+        </table>
 
-            <th><countdown #cd [config]="config" (event)="handleEvent($event)"></countdown></th>
-        </tr>
-        </tbody>
-      </table>
+      </ng-container>
+      <ng-container *ngIf="orders && (orders.length == 0)">
+        <img src="../../../assets/images/order-now.jpg" style="width:200px;height: 200px;" >
+        <p class="text-muted mb-4"></p>
+        <p class="text-muted mb-4"></p>
+        <h2>No order has been taken</h2>
+      </ng-container>
 
-    </ng-container>
-    <ng-container *ngIf="orders.length == 0">
-      <img src="../../../assets/images/order-now.jpg" style="width:200px;height: 200px;" >
-      <p class="text-muted mb-4"></p>
-      <p class="text-muted mb-4"></p>
-      <h2>No order has been taken</h2>
-    </ng-container>
   </div>
 </div>

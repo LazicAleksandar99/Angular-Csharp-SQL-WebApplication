@@ -8,7 +8,6 @@ namespace Backend.Models
         public string Name { get; set; }
         public double Price { get; set; }
         public string Ingredients { get; set; }
-
         public List<Item> Items { get; set; }
     }
 }

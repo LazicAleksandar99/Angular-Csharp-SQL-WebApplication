@@ -11,7 +11,7 @@ export class AuthService {
 
     user: UserTokenModel;
     userId: number;
-    token: any;
+    theToken: any;
 
     baseUrl = environment.baseUrl;
     constructor(private http: HttpClient) { }
@@ -21,19 +21,19 @@ export class AuthService {
     }
 
     getUserId(token: string): number{
-      this.user = JSON.parse(atob(token.split('.')[1])) as UserTokenModel;
+      this.user = JSON.parse(atob(token.split('.')[1]));
       this.userId = Number(this.user.nameid);
       return this.userId;
     }
 
     getUserVerificationStatus(token: string): string{
-      this.user = JSON.parse(atob(token.split('.')[1])) as UserTokenModel;
-      return this.user.authentication;
+      this.user = JSON.parse(atob(token.split('.')[1]));
+      return this.user.given_name;
     }
 
     hasRole(role: string): boolean {
-      this.token = localStorage.getItem('token');
-      this.user = this.getUser(this.token);
+      this.theToken = localStorage.getItem('token');
+      this.user = this.getUser(this.theToken);
       return this.user.role.includes(role) || false;
     }
 

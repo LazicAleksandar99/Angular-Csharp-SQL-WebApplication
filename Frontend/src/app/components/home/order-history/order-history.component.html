@@ -1,6 +1,6 @@
 <div class="grid">
   <div class="row" style="margin-top: 2.8cm;padding-left: 120px;padding-right: 120px;padding-top: 10px;">
-    <ng-container *ngIf="orders.length != 0">
+    <ng-container *ngIf="orders && (orders.length != 0)">
       <div class="table-responsive">
         <table class="table table-hover" style="background-color: #ffc244;">
           <thead>
@@ -28,7 +28,7 @@
         </table>
       </div>
     </ng-container>
-    <ng-container *ngIf="orders.length == 0">
+    <ng-container *ngIf="orders && (orders.length == 0)">
       <div class="container" style="background-color:#ffc244;">
           <div class="card">
               <h5 class="card-title">My order history</h5>

@@ -60,7 +60,7 @@ namespace Backend.Data.Repositorys
             if (newAccount.Role == Userrole.NormalUser)
             {
                 user.Role = Userrole.NormalUser;
-                user.Verification = "";
+                user.Verification = "not needed";
             }
             else
             {

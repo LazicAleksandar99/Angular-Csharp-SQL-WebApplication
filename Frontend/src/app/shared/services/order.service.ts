@@ -21,7 +21,8 @@ export class OrderService {
 
   makeOrder(order: Order[],comment: string){
     this.token = localStorage.getItem('id');
-    this.id = this.authService.getUserId(this.token);//localStorage.getItem('id');
+    this.id = this.authService.getUserId(this.token);
+
     return this.http.post(this.baseUrl + '/order/make/' + this.id + '/' + comment,order,this.storageService.getHttpHeader() );
   }
 
@@ -42,7 +43,7 @@ export class OrderService {
   }
 
   getCurrentOrders(): Observable<CurrentOrder[]> {
-    this.token = localStorage.getItem('id');
+    this.token = localStorage.getItem('token');
     this.id = this.authService.getUserId(this.token);
     return this.http.get<CurrentOrder[]>(this.baseUrl + '/order/current/' + this.id.toString(),this.storageService.getHttpHeader());
   }

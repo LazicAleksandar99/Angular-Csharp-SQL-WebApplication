@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
     if (localStorage.getItem('token') != null){
       this.token = localStorage.getItem('token');
       this.id = localStorage.getItem('id');
-      this.storageService.setStorage(this.token,this.id);//
+      this.storageService.setStorage(this.token,this.id);
 
       if(this.storageService.user.role.includes(next.data['role1']) ||
          this.storageService.user.role.includes(next.data['role2']) ||
