@@ -32,19 +32,19 @@
                           </tr>
                           <br>
                           <tr>
-                              <td colspan="2"></td>
-                              <td>
+                              <td style="padding-top: 14px;">
                                 <form #commentForm='ngForm'>
                                   <textarea class="form-control" placeholder="Enter comment" rows="2" id="comment" name="text" required ngModel name="comment"></textarea>
                                 </form>
                               </td>
+                              <td style="padding-top: 25px;"><button  class="btn btn-danger" (click)="EmptyCart()">Empty Cart</button></td>
+                              <td style="padding-top: 25px;"><button routerLink="/home/dashboard" class="btn btn-primary">Shop More</button></td>
+                              <td style="padding-top: 25px;"><button class="btn btn-success" (click)="PayWithCash(commentForm)">Pay with cash</button></td>
+                              <app-paypal-button  [order]="products" [comment]="commentForm.value.comment"></app-paypal-button>
                               <td colspan="1"></td>
-                              <td><button  class="btn btn-danger" (click)="EmptyCart()">Empty Cart</button></td>
-                              <td><button routerLink="/home/dashboard" class="btn btn-primary">Shop More</button></td>
-                              <td><button class="btn btn-success" (click)="MakeOrder(commentForm)">Make an order</button></td>
-                              <td><strong>Grand Total : ${{grandTotal}}</strong></td>
+                              <td style="padding-top: 25px;"><strong>Grand Total : ${{grandTotal}}</strong></td>
                           </tr>
-                          <br>
+
                       </tbody>
                   </table>
               </div>

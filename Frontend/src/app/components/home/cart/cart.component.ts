@@ -17,7 +17,9 @@ export class CartComponent implements OnInit {
 
   constructor(private cartService: CartService,
               private orderService: OrderService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService) {
+
+  }
 
   ngOnInit() {
     this.getProdcuts();
@@ -39,7 +41,7 @@ export class CartComponent implements OnInit {
     this.cartService.removeAllCart();
   }
 
-  MakeOrder(commentForm: NgForm): void{
+  PayWithCash(commentForm: NgForm): void{
 
     if(commentForm.valid){
       this.orderService.makeOrder(this.products,commentForm.value.comment).subscribe(

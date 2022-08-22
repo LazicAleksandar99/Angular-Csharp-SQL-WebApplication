@@ -20,10 +20,17 @@ export class OrderService {
               private authService: AuthService) { }
 
   makeOrder(order: Order[],comment: string){
-    this.token = localStorage.getItem('id');
+    this.token = localStorage.getItem('token');
     this.id = this.authService.getUserId(this.token);
 
     return this.http.post(this.baseUrl + '/order/make/' + this.id + '/' + comment,order,this.storageService.getHttpHeader() );
+  }
+
+  payOrderByPayPal(order: Order[],comment: string){
+    this.token = localStorage.getItem('token');
+    this.id = this.authService.getUserId(this.token);
+
+    return this.http.post(this.baseUrl + '/order/paypal/' + this.id + '/' + comment,order,this.storageService.getHttpHeader() );
   }
 
   getPendingOrder(): Observable<PendingOrder[]>{

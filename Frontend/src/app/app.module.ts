@@ -37,6 +37,7 @@ import { AddProductComponent } from './components/home/dashboard/add-product/add
 import { AllOrdersComponent } from './components/home/dashboard/all-orders/all-orders.component';
 import { StatusCardComponent } from './components/home/dashboard/status-card/status-card.component';
 import { OrderHistoryComponent } from './components/home/order-history/order-history.component';
+import { PaypalButtonComponent } from './components/home/cart/paypal-button/paypal-button.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { OrderHistoryComponent } from './components/home/order-history/order-his
     AllOrdersComponent,
     StatusCardComponent,
     OrderHistoryComponent,
+    PaypalButtonComponent,
    ],
   imports: [
     BrowserModule,

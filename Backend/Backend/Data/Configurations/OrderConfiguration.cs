@@ -25,8 +25,7 @@ namespace Backend.Data.Configurations
 
             builder.Property(x => x.Comment).IsRequired(true);
 
-            //   builder.Property(x => x.Deliverer).IsRequired(true);
-
+            builder.Property(x => x.PaymentStatus).IsRequired(true);
         }
     }
 }

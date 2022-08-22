@@ -34,7 +34,24 @@ namespace Backend.Controllers
                 return StatusCode(201);
             }
         }
+        
+        [HttpPost("paypal/{id}/{comment}")]
+        [Authorize(Roles = "NormalUser")]
+        public async Task<IActionResult> PayWithPayPal(MakeOrderDto[] order, long id, string comment)
+        {
+            var result = await orderService.PayWithPayPal(order, id, comment);
 
+            if (result is ApiError)
+            {
+                ApiError apiError = (ApiError)result;
+                return BadRequest(apiError);
+            }
+            else
+            {
+                return StatusCode(201);
+            }
+        }
+        
         //Sta ako je prazano?
         [HttpGet("pending")]
         [Authorize(Roles = "Deliverer")]

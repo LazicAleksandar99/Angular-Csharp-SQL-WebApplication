@@ -25,17 +25,9 @@ export class ShowUserProfileComponent implements OnInit {
   getUserDetails(){
     this.token = localStorage.getItem('token');
     this.id = this.authService.getUserId(this.token);
-    console.log('ide TOKEN:');
-    console.log(this.token);
-
-    console.log('ide ID:');
-    console.log(this.id);
     this.profileService.getUserDetails(this.id).subscribe(
       data=>{
         this.user = data;
-        console.log('evo usera')
-        console.log(this.user);
-        //ovdje sam postavio verification ali to ne treba vise
       }, error =>{
         console.log('Error occurred at show-user-profile.component.ts')
       }
