@@ -1,10 +1,17 @@
 export interface Order{
+  orderProducts: OrderProducts[]
+  comment: string;
+  payment: string;
+}
+
+export interface OrderProducts{
   id: number;
   name: string;
   price: number;
   quantity: number;
   total: number;
 }
+
 
 export interface StatusOrder{
   id: number;

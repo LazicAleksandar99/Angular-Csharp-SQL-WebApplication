@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Order } from 'src/app/shared/models/order';
+import { Order, OrderProducts } from 'src/app/shared/models/order';
 import { CartProduct } from 'src/app/shared/models/product';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { OrderService } from 'src/app/shared/services/order.service';
@@ -15,7 +15,7 @@ declare var paypal: any;
 })
 
 export class PaypalButtonComponent implements OnInit {
-  @Input() order: Order[];
+  @Input() order: OrderProducts[];
   @Input() comment: string;
 
   @ViewChild('paypal', {static: true})
@@ -35,8 +35,6 @@ export class PaypalButtonComponent implements OnInit {
           },
 
           createOrder: (data: any, actions: any) => {
-            console.log('TOTALITI');
-            console.log(this.cartService.getTotalPrice());
             return actions.order.create({
               purchase_units: [
                 {
@@ -51,7 +49,7 @@ export class PaypalButtonComponent implements OnInit {
 
           onApprove: async (data: any, actions: any) => {
             const payment = await actions.order.capture();
-            this.orderService.payOrderByPayPal(this.order,this.comment).subscribe(
+            this.orderService.makeOrder(this.order,this.comment,"PayPalPaid").subscribe(
               data=>{
                 this.toastr.success('You paid succesfuly', 'Succes!', {
                   timeOut: 3000,

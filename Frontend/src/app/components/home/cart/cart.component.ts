@@ -44,7 +44,7 @@ export class CartComponent implements OnInit {
   PayWithCash(commentForm: NgForm): void{
 
     if(commentForm.valid){
-      this.orderService.makeOrder(this.products,commentForm.value.comment).subscribe(
+      this.orderService.makeOrder(this.products,commentForm.value.comment,"Cash").subscribe(
         data=>{
           this.toastr.success('Your order has been succesfuly listed, sit back and wait for your delivery', 'Succes!', {
             timeOut: 3000,

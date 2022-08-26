@@ -20,9 +20,9 @@ namespace Backend.Controllers
         //u foreach jos neke provjere
         [HttpPost("make/{id}/{comment}")]
         [Authorize(Roles = "NormalUser")]
-        public async Task<IActionResult> MakeOrder(MakeOrderDto[] order, long id, string comment)
+        public async Task<IActionResult> MakeOrder(MakeOrderDto order, long id)
         {
-            var result = await orderService.MakeOrder(order, id, comment);
+            var result = await orderService.MakeOrder(order, id);
 
             if (result is ApiError)
             {
@@ -35,7 +35,7 @@ namespace Backend.Controllers
             }
         }
         
-        [HttpPost("paypal/{id}/{comment}")]
+       /* [HttpPost("paypal/{id}/{comment}")]
         [Authorize(Roles = "NormalUser")]
         public async Task<IActionResult> PayWithPayPal(MakeOrderDto[] order, long id, string comment)
         {
@@ -51,6 +51,7 @@ namespace Backend.Controllers
                 return StatusCode(201);
             }
         }
+       */
         
         //Sta ako je prazano?
         [HttpGet("pending")]

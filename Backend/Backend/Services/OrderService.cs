@@ -20,7 +20,7 @@ namespace Backend.Services
             this.mapper = mapper;
         }
 
-        public async Task<Object> MakeOrder(MakeOrderDto[] order, long id, string comment)
+        public async Task<Object> MakeOrder(MakeOrderDto order, long id)
         {
             ApiError apiError = new ApiError();
             var user = await uow.AccountRepository.GetUserDetails(id);
@@ -30,7 +30,7 @@ namespace Backend.Services
                 apiError.ErrorMessage = "Wrong user id";
                 return apiError;
             }
-            if (String.IsNullOrWhiteSpace(comment))
+            if (String.IsNullOrWhiteSpace(order.comment))
             {
                 apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "You need to enter comment";
@@ -41,14 +41,14 @@ namespace Backend.Services
             Order newOrder = new Order();
             newOrder.OrderStatus = "Pending";
             newOrder.Deliverer = -1;
-            newOrder.Comment = comment;
+            newOrder.Comment = order.comment;
             newOrder.UserId = id;
-            newOrder.PaymentStatus = "Cash";
+            newOrder.PaymentStatus = order.payment;
 
-            uow.OrderRepository.AddOrder(newOrder);
-            await uow.SaveAsync();
+            uow.OrderRepository.AddOrder(newOrder);//
+            await uow.SaveAsync();// to dole sa 56om linijom izmjeniti
 
-            foreach (var item in order)
+            foreach (var item in order.orderProducts)
             {
                 Item newItem = new Item();
                 newItem.Quantity = item.Quantity;
@@ -62,7 +62,7 @@ namespace Backend.Services
             await uow.SaveAsync();
             return 201;
         }
-        public async Task<Object> PayWithPayPal(MakeOrderDto[] order, long id, string comment)
+       /* public async Task<Object> PayWithPayPal(MakeOrderDto[] order, long id, string comment)
         {
             ApiError apiError = new ApiError();
             var user = await uow.AccountRepository.GetUserDetails(id);
@@ -103,7 +103,7 @@ namespace Backend.Services
             uow.OrderRepository.UpdatePrice(newOrder.Id, grandTotal);
             await uow.SaveAsync();
             return 201;
-        }
+        }*/
         public async Task<Object> GetPendingOrders()
         {
             var orders = await uow.OrderRepository.GetPendingOrders();
