@@ -58,6 +58,7 @@ export class PaypalButtonComponent implements OnInit {
                 this.cartService.removeAllCart();
             }, error =>{
               console.log('Error occurred at paypal-button.component.ts');
+              this.toastr.error(error.error.errorMessage, 'Error');
             }
             );
           },

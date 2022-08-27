@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AcceptOrder, CurrentOrder, ItemDetails, Order, OrderProducts, PendingOrder, StatusOrder } from '../models/order';
+import { AcceptOrder, CurrentOrder, Order, OrderProducts, PendingOrder, StatusOrder } from '../models/order';
 import { AuthService } from './auth.service';
 import { StorageService } from './storage.service';
 
@@ -14,28 +14,23 @@ export class OrderService {
   baseUrl = environment.baseUrl;
   id: any;
   token: any;
-  order: Order;
 
   constructor(private http: HttpClient,
               private storageService: StorageService,
               private authService: AuthService) { }
 
   makeOrder(orderProducts: OrderProducts[],comment: string, payment: string){
-    this.order.orderProducts = orderProducts;
-    this.order.comment = comment;
-    this.order.payment = payment;
+
+    let order: Order = {
+      orderProducts : orderProducts,
+      comment : comment,
+      payment : payment,
+    };
 
     this.token = localStorage.getItem('token');
     this.id = this.authService.getUserId(this.token);
 
-    return this.http.post(this.baseUrl + '/order/make/' + this.id ,this.order, this.storageService.getHttpHeader() );
-  }
-
-  payOrderByPayPal(order: Order[],comment: string){
-    this.token = localStorage.getItem('token');
-    this.id = this.authService.getUserId(this.token);
-
-    return this.http.post(this.baseUrl + '/order/paypal/' + this.id + '/' + comment,order,this.storageService.getHttpHeader() );
+    return this.http.post(this.baseUrl + '/order/make/' + this.id , order, this.storageService.getHttpHeader() );
   }
 
   getPendingOrder(): Observable<PendingOrder[]>{

@@ -18,7 +18,7 @@ namespace Backend.Controllers
         }
 
         //u foreach jos neke provjere
-        [HttpPost("make/{id}/{comment}")]
+        [HttpPost("make/{id}")]
         [Authorize(Roles = "NormalUser")]
         public async Task<IActionResult> MakeOrder(MakeOrderDto order, long id)
         {
