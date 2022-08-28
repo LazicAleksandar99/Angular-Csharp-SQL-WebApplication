@@ -6,6 +6,7 @@ import { UserForRegister } from 'src/app/shared/models/user';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/shared/services/user.service';
+import { Options } from 'ngx-google-places-autocomplete/objects/options/options';
 
 @Component({
   selector: 'app-registration',
@@ -20,11 +21,11 @@ export class RegistrationComponent implements OnInit {
   user: UserForRegister;
   userRole: Role;
   id: any;
-  options={
-    componentRestrictions:{
-    country:["AU"]
-    }
-}
+
+  options = {
+  types: ['address'],
+  componentRestrictions: { country: ['rs'] }
+  } as unknown as Options;
 
   handleAddressChange(address: any) {
   }

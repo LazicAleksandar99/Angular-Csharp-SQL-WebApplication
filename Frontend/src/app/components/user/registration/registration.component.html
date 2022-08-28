@@ -47,9 +47,9 @@
     <input type="date" id="typeBirthday" min="1900-01-01" max="2023-01-01" value="2022-01-01" class="form-control form-control-lg" formControlName="birthday" >
   </div>
 
-  <div class="form-outline mb-2">
+  <div class="form-outline mb-2" >
     <label class="form-label" for="typeLocation-2" >Address</label>
-    <input class="form-control form-control-lg" id="typeLocation-2"  ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)" formControlName="address" />
+    <input class="form-control form-control-lg" id="typeLocation-2" ngx-google-places-autocomplete  [options]='options'  (onAddressChange)="handleAddressChange($event)" formControlName="address"/>
     <span *ngIf="!address.valid && (address.touched)"
             class="alert"  style="color: red;">
               Please provide address

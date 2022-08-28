@@ -38,6 +38,7 @@ import { AllOrdersComponent } from './components/home/dashboard/all-orders/all-o
 import { StatusCardComponent } from './components/home/dashboard/status-card/status-card.component';
 import { OrderHistoryComponent } from './components/home/order-history/order-history.component';
 import { PaypalButtonComponent } from './components/home/cart/paypal-button/paypal-button.component';
+import { MapComponent } from './components/home/dashboard/map/map.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { PaypalButtonComponent } from './components/home/cart/paypal-button/payp
     StatusCardComponent,
     OrderHistoryComponent,
     PaypalButtonComponent,
+    MapComponent,
    ],
   imports: [
     BrowserModule,
