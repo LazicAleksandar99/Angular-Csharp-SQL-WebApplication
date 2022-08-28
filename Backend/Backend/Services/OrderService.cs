@@ -62,48 +62,6 @@ namespace Backend.Services
             await uow.SaveAsync();
             return 201;
         }
-       /* public async Task<Object> PayWithPayPal(MakeOrderDto[] order, long id, string comment)
-        {
-            ApiError apiError = new ApiError();
-            var user = await uow.AccountRepository.GetUserDetails(id);
-            if (user == null)
-            {
-                apiError.ErrorCode = 400;
-                apiError.ErrorMessage = "Wrong user id";
-                return apiError;
-            }
-            if (String.IsNullOrWhiteSpace(comment))
-            {
-                apiError.ErrorCode = 400;
-                apiError.ErrorMessage = "You need to enter comment";
-                return apiError;
-            }
-
-            float grandTotal = 0;
-            Order newOrder = new Order();
-            newOrder.OrderStatus = "Pending";
-            newOrder.Deliverer = -1;
-            newOrder.Comment = comment;
-            newOrder.UserId = id;
-            newOrder.PaymentStatus = "PayPalPaid";
-
-            uow.OrderRepository.AddOrder(newOrder);
-            await uow.SaveAsync();
-
-            foreach (var item in order)
-            {
-                Item newItem = new Item();
-                newItem.Quantity = item.Quantity;
-                newItem.ProductId = item.Id;
-                newItem.OrderId = newOrder.Id;
-                grandTotal += item.Total;
-                uow.OrderRepository.AddItem(newItem);
-            }
-
-            uow.OrderRepository.UpdatePrice(newOrder.Id, grandTotal);
-            await uow.SaveAsync();
-            return 201;
-        }*/
         public async Task<Object> GetPendingOrders()
         {
             var orders = await uow.OrderRepository.GetPendingOrders();

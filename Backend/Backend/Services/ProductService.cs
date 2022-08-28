@@ -26,7 +26,6 @@ namespace Backend.Services
             var productsDto = mapper.Map<IEnumerable<ProductDto>>(products);
             return productsDto;
         }
-
         public async Task<Object> AddProduct(NewProductDto newProduct)
         {
             ApiError apiError = new ApiError();

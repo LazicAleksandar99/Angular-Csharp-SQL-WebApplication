@@ -7,7 +7,6 @@ namespace Backend.Interfaces
     public interface IOrderService
     {
         Task<Object> MakeOrder(MakeOrderDto order, long id);
-    /*    Task<Object> PayWithPayPal(MakeOrderDto[] order, long id, string comment);*/
         Task<Object> GetPendingOrders();
         Task<Object> GetAllOrders();
         Task<Object> GetExecutedOrder(long id);
