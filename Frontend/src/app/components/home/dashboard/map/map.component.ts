@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { ToastrService } from 'ngx-toastr';
+import { PendingOrder } from 'src/app/shared/models/order';
 import { LocationService } from 'src/app/shared/services/location.service';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
   selector: 'app-map',
@@ -11,38 +13,21 @@ import { LocationService } from 'src/app/shared/services/location.service';
 export class MapComponent implements OnInit {
 
   private map: L.Map;
-  private centroid: L.LatLngExpression = [45.267136, 19.833549]; //Trebam naci srbiju
+  private centroid: L.LatLngExpression = [45.267136, 19.833549];
+  orders: PendingOrder[];
+  allPendingOrdersOnMap: string[] = [];
 
   constructor(private locationService: LocationService,
-              private toastr: ToastrService,) {
+              private toastr: ToastrService,
+              private orderService: OrderService,) {
 
 
   }
 
   ngOnInit() {
     this.initMap();
-    //locationService.
-    //console.log(locationService.)
-    //https://maps.googleapis.com/maps/api/geocode/json?address=Strazilovska+31,Novi+Sad&key=AIzaSyCFDLN87ufEb4O8fDBm4JuygjVFk6pDJCk
-    //if(navigator.geolocation){
-     // navigator.geolocation.getCurrentPosition(function(position){
-    //    console.log(position);
-    //    .get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude + ',' + position.coords.longitude + "&sensor=false", function(data){
-    //      console.log(data);
-    //    })
-    //  });
-   // }
-    this.locationService.getLocation("sda").subscribe(
-      data=>{
-         console.log(data);
-      }, error =>{
-        this.toastr.error(error.error.errorMessage, 'Error!', {
-          timeOut: 3000,
-          closeButton: true,
-        });
-      }
-    );
   }
+
   private initMap(): void {
     this.map = L.map('map', {
       center: this.centroid,
@@ -55,6 +40,58 @@ export class MapComponent implements OnInit {
       maxZoom: 18,
       minZoom: 10,
     }).addTo(this.map);
+
+    this.orderService.getPendingOrder().subscribe(
+      data=>{
+        this.orders = data;
+        this.orders.forEach(order => {
+          this.locationService.getLocation(order.address).subscribe(
+            data=>{
+               console.log(data);
+               let cordinates: string = data.results[0].geometry.location.lat + "-" + data.results[0].geometry.location.lng
+               //ovdje treba jos while neki da non stop provjerava i malo bolje i ovo 0.00003 mozda jos provjeriti
+               if(this.allPendingOrdersOnMap.includes(cordinates)){
+                let newLat: number = data.results[0].geometry.location.lat + 0.00003;
+                let newLng: number = data.results[0].geometry.location.lng + 0.00003;
+                L.marker([newLat, newLng]).addTo(this.map)
+                let newcCordinates: string = data.results[0].geometry.location.lat + "-" + data.results[0].geometry.location.lng
+                this.allPendingOrdersOnMap.push(newcCordinates);
+               }
+               else{
+                L.marker([data.results[0].geometry.location.lat, data.results[0].geometry.location.lng]).addTo(this.map)
+                this.allPendingOrdersOnMap.push(cordinates);
+               }
+
+            }, error =>{
+              this.toastr.error(error.error.errorMessage, 'Error!', {
+                timeOut: 3000,
+                closeButton: true,
+              });
+            }
+          );
+        });
+     }, error =>{
+       this.toastr.error(error.error.errorMessage, 'Error!', {
+         timeOut: 3000,
+         closeButton: true,
+       });
+     }
+   );
+
+/*    this.locationService.getLocation("Stražilovska 31,Novi Sad,Serbia").subscribe(
+      data=>{
+         console.log(data);
+        // console.log(data.results[0].geometry.location.lat);
+         L.marker([data.results[0].geometry.location.lat, data.results[0].geometry.location.lng]).addTo(this.map)
+      }, error =>{
+        this.toastr.error(error.error.errorMessage, 'Error!', {
+          timeOut: 3000,
+          closeButton: true,
+        });
+      }
+    );
+
+ */
    // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
    // attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 

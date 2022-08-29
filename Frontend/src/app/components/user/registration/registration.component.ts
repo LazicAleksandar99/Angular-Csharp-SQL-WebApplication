@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Options } from 'ngx-google-places-autocomplete/objects/options/options';
+import { LocationService } from 'src/app/shared/services/location.service';
 
 @Component({
   selector: 'app-registration',
@@ -34,7 +35,8 @@ export class RegistrationComponent implements OnInit {
               private fb: FormBuilder,
               private authService: AuthService,
               private toastr: ToastrService,
-              private profileService: UserService) {
+              private profileService: UserService,
+              private locationService: LocationService,) {
 
       this.createRegisterationForm();
   }
@@ -61,6 +63,27 @@ export class RegistrationComponent implements OnInit {
       return fg.get('password')?.value === fg.get('confirmPassword')?.value ? true : {notmatched: true};
   }
 
+  streetAddressValid(): boolean{
+      let valid : boolean = true;
+      this.locationService.getLocation(this.registerationForm.get('address')?.value).subscribe(
+        data=>{
+          if(data && data.status != "ZERO_RESULTS"){
+
+          }
+          else{
+            valid = false;
+          }
+        },
+        error =>{
+          this.toastr.error(error.error.errorMessage, 'Error!', {
+            timeOut: 3000,
+            closeButton: true,
+          });
+        }
+      );
+
+      return valid;
+  }
 
   onSubmitUser() {
     this.userRole = Role.normalUser
@@ -74,7 +97,8 @@ export class RegistrationComponent implements OnInit {
 
   OnSubmit(){
     if (this.registerationForm.valid) {
-         this.authService.registerUser(this.userData()).subscribe(
+      if(this.streetAddressValid()){
+        this.authService.registerUser(this.userData()).subscribe(
           data=>{
             this.toastr.success('You have registered correctly, try loging in now', 'Succes!', {
               timeOut: 3000,
@@ -109,6 +133,14 @@ export class RegistrationComponent implements OnInit {
           }
 
         );
+      }
+      else{
+        this.toastr.error("Please enter valid street address: ST.NAME ST.NUMBER,CITY,COUNTRY", 'Error!' , {
+          timeOut: 3000,
+          closeButton: true,
+        });
+      }
+
     }
     else{
       this.toastr.error("You have to input every field valid", 'Error!' , {

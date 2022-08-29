@@ -9,15 +9,26 @@ export class LocationService {
 
 constructor(private http: HttpClient) { }
 
-  getLocation(streetAddress: string): Observable<any>{  //" +" Strazilovska+31,Novi+Sad" + "
-    return this.http.get<any>("https://maps.googleapis.com/maps/api/geocode/json?address=Strazilovska+31,Novi+Sad,Serbia&key=AIzaSyCFDLN87ufEb4O8fDBm4JuygjVFk6pDJCk");
+  getLocation(streetAddress: string): Observable<any>{
+    let convertedAddres: string = this.convertStreetToValidGoogleFormat(streetAddress);
+    return this.http.get<any>("https://maps.googleapis.com/maps/api/geocode/json?address="+ convertedAddres + "&key=AIzaSyCFDLN87ufEb4O8fDBm4JuygjVFk6pDJCk");
   }
-  //Stražilovska 31, Novi Sad, Serbia
+
   convertStreetToValidGoogleFormat(streetAddress: string): string{
-    let streetComponents: string[] =  streetAddress.split(','); //data[0]="Stražilovska 31" , data[1]= "Novi Sad", data[2] = "Serbia"
+    let streetComponents: string[] =  streetAddress.split(',');
+    let words: string[];
+    let returnString = "";
+    streetComponents.forEach( part => {
+      words = part.split(' '),
+      words.forEach( word =>{
+        returnString += word;
+        returnString += "+";
+      })
+      returnString = returnString.slice(0,-1);
+      returnString += ",";
 
-   // foreach()
-
-    return "";
+      })
+      returnString = returnString.slice(0,-1);
+    return returnString;
   }
 }
