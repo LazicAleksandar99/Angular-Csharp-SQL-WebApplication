@@ -37,6 +37,10 @@ export class OrderService {
     return this.http.get<PendingOrder[]>(this.baseUrl + '/order/pending',this.storageService.getHttpHeader());
   }
 
+  getSelectedOrder(id: number): Observable<PendingOrder>{
+    return this.http.get<PendingOrder>(this.baseUrl + '/order/selected/' + id ,this.storageService.getHttpHeader());
+  }
+
   getAllOrders(): Observable<StatusOrder[]>{
     return this.http.get<StatusOrder[]>(this.baseUrl + '/order/all',this.storageService.getHttpHeader());
   }

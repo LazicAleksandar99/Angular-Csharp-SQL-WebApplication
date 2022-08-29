@@ -14,6 +14,8 @@ namespace Backend.Interfaces
 
         Task<IEnumerable<Order>> GetPendingOrders();
 
+        Task<Order> GetSelectedOrder(long id);
+
         Task<IEnumerable<Order>> GetAllOrders();
 
         Task<IEnumerable<Order>> GetExecutedOrders(long id,string role);

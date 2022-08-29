@@ -83,8 +83,7 @@ namespace Backend.Data.Repositorys
 
         public async Task<User> GetUserDetails(long id)
         {
-            User user = await dsdc.Users.Where(u => u.Id == id).FirstAsync();
-            return user;
+            return await dsdc.Users.Where(u => u.Id == id).FirstAsync();
         }
 
         public void UpdateUserPhoto(long id, string photo)

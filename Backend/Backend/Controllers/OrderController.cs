@@ -43,6 +43,13 @@ namespace Backend.Controllers
             return Ok(await orderService.GetPendingOrders());
         }
 
+        [HttpGet("selected/{id}")]
+        [Authorize(Roles = "Deliverer")]
+        public async Task<IActionResult> GetSelectedOrder(long id)
+        {
+            return Ok(await orderService.GetSelectedOrder(id));
+        }
+
         //Sta ako je prazano?
         [HttpGet("all")]
         [Authorize(Roles = "Admin")]

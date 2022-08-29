@@ -16,41 +16,39 @@ namespace Backend.Data.Repositorys
         {
             this.dsdc = dsdc;
         }
+
         public void AddOrder(Order order)
         {
             dsdc.Orders.Add(order);
         }
-
         public void AddItem(Item item)
         {
             dsdc.Items.Add(item);
         }
-
         public void UpdatePrice(long id, float price)
         {
             var order = dsdc.Orders.SingleOrDefault(x => x.Id == id);
             order.Price = price;
         }
-
         public async Task<IEnumerable<Order>> GetPendingOrders()
         {
             return await dsdc.Orders.Where(x => x.OrderStatus == "Pending").ToListAsync();
         }
-
+        public async Task<Order> GetSelectedOrder(long id)
+        {
+            return await dsdc.Orders.Where(x => x.Id == id).FirstAsync();
+        }
         public async Task<IEnumerable<Order>> GetAllOrders()
         {
             return await dsdc.Orders.ToListAsync();
         }
-
-        //history of user
         public async Task<IEnumerable<Order>> GetExecutedOrders(long id,string role)
-        {//Deliverer = 1, NormalUser = 2
+        {
             if (role == "NormalUser")
                 return await dsdc.Orders.Where(x => x.UserId == id && x.OrderStatus == "Delivered").ToListAsync();
             else 
                 return await dsdc.Orders.Where(x => x.Deliverer == id && x.OrderStatus == "Delivered").ToListAsync();
         }
-
         public async Task<string> GetOrderItems(long id)
         {
             string ret = "";
@@ -65,8 +63,6 @@ namespace Backend.Data.Repositorys
 
             return ret;
         }
-
-        //current orders
         public async Task<IEnumerable<Order>> GetExecutingOrders(long id,string role)
         {
             if (role == "NormalUser")
@@ -74,12 +70,10 @@ namespace Backend.Data.Repositorys
             else
                 return await dsdc.Orders.Where(x => x.Deliverer == id && x.OrderStatus == "Delivering").ToListAsync();
         }
-
         public async Task<Order> GetOrder(long id)
         {
             return await dsdc.Orders.Where(x => x.Id == id).FirstAsync();
-        }
-        
+        }  
         public void UpdateStatus()
         {
             var orders = dsdc.Orders.Where(x => x.OrderStatus == "Delivering").ToList();
@@ -94,7 +88,6 @@ namespace Backend.Data.Repositorys
         {
             return await dsdc.Orders.AnyAsync(x => x.OrderStatus == "Delivering" && x.Deliverer == id);
         }
-
         public async Task<bool> ChekIfDelivererIsVerifed(long id)
         {
             return await dsdc.Users.AnyAsync(x => x.Verification != "Verified" && x.Id == id);

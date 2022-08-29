@@ -12,11 +12,15 @@ export class StorageService {
 
 constructor(private authService: AuthService) { }
 
-  setStorage(token: string, id: number){//ne treba ja msm al et
+  setStorage(token: string, id: number){
     localStorage.setItem('token', token);
     localStorage.setItem('id', id.toString());
-    this.token = localStorage.getItem('token');//nebitno
-    this.user = this.authService.getUser(this.token);//nebitno
+    this.token = localStorage.getItem('token');
+    this.user = this.authService.getUser(this.token);
+  }
+
+  setSelectedPendingOrder(id: number){
+    localStorage.setItem('selectedOrder',id.toString());
   }
 
   getHttpHeader(): { headers: HttpHeaders; }{

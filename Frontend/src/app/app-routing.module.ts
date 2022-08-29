@@ -9,6 +9,7 @@ import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { UserComponent } from './components/user/user.component';
 import { OrderHistoryComponent } from './components/home/order-history/order-history.component';
+import { SelectedOrderComponent } from './components/home/selected-order/selected-order.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/user/login',pathMatch:'full'},
@@ -50,7 +51,12 @@ const routes: Routes = [
           role2: "Deliverer",
           role3: "NormalUser"
         }
-      }
+      },
+      { path: 'selected-order', component: SelectedOrderComponent, canActivate: [AuthGuard],
+        data: {
+          role2: "Deliverer"
+        }
+      },
    ]
 
   }

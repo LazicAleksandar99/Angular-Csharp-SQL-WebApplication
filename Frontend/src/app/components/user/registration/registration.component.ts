@@ -120,8 +120,6 @@ export class RegistrationComponent implements OnInit {
                     closeButton: true,
                   });
                 }
-
-
               );
             }
             this.router.navigate(['/user/login']);

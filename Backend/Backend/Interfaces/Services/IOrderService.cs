@@ -8,6 +8,7 @@ namespace Backend.Interfaces
     {
         Task<Object> MakeOrder(MakeOrderDto order, long id);
         Task<Object> GetPendingOrders();
+        Task<Object> GetSelectedOrder(long id);
         Task<Object> GetAllOrders();
         Task<Object> GetExecutedOrder(long id);
         Task<Object> AcceptOrder(AcceptDeliveryDto deliverer, long id);

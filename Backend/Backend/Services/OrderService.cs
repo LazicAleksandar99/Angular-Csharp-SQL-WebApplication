@@ -84,6 +84,25 @@ namespace Backend.Services
             }
             return pendingOrders;
         }
+        public async Task<Object> GetSelectedOrder(long id)
+        {
+            var order = await uow.OrderRepository.GetSelectedOrder(id);
+
+            var ordersDtos = mapper.Map<PendingOrderDto>(order);
+            SendPendingOrderDto selectedOrder = new SendPendingOrderDto();
+
+            selectedOrder.Id = ordersDtos.Id;
+            selectedOrder.Price = ordersDtos.Price;
+            selectedOrder.UserId = ordersDtos.UserId;
+            selectedOrder.Comment = ordersDtos.Comment;
+            selectedOrder.Content = await uow.OrderRepository.GetOrderItems(ordersDtos.Id);
+            var user = await uow.AccountRepository.GetUserDetails(ordersDtos.UserId);
+            selectedOrder.Address = user.Address;
+            selectedOrder.Email = user.Email;
+            
+            return selectedOrder;
+        }
+
         public async Task<Object> GetAllOrders()
         {
             uow.OrderRepository.UpdateStatus();
