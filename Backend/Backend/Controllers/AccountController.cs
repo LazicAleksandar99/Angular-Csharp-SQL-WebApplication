@@ -90,7 +90,6 @@ namespace Backend.Controllers
             }
         }
 
-        //ovo se mora provjeriti pod HITNO!
         [HttpPost("photo/{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> AddPhoto([FromForm(Name = "myfile")] IFormFile file, long id)
@@ -107,7 +106,6 @@ namespace Backend.Controllers
             }
         }
 
-        //Sta kad nema nijedan deliveri, to moram vidjet
         [HttpGet("delivers")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetDelivers()
@@ -115,7 +113,6 @@ namespace Backend.Controllers
             return Ok(await accountService.GetDelivers());
         }
 
-        //Sta ako ne postoji user s tim usernamom?
         [HttpPost("verify")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Verify(VrifyDto user)
@@ -133,7 +130,6 @@ namespace Backend.Controllers
             }
         }
 
-        //Sta ako ne postoji user s tim usernamom?
         [HttpPost("deny")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Deny(VrifyDto user)

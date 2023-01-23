@@ -35,7 +35,6 @@ namespace Backend
             });
 
             services.AddDbContext<DeliverySystemDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DeliverySystemDataBase")));
-           // services.AddControllers().AddNewtonsoftJson();
             services.AddCors();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
@@ -50,7 +49,6 @@ namespace Backend
                 .GetBytes(secretKey));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            // services.AddAuthentication("Bearer")
                 .AddJwtBearer(opt => {
                     opt.TokenValidationParameters = new TokenValidationParameters
                     {

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8Q2IqhQsO0m/ecb1kzFe1aohO6k2QMosskhePpdhXNg+x6f4k3kqp5KtcHXTBtE2aiFmP+xCvsP6/Qi8G7KUSA==",
+  "dgSpecHash": "ZriQjWiX2AEETzsT+CmGuYc0KIOHwAObNETv7QloDLIdPD5M3baR1UkvrxhpYkqXqPHD5ivYu5dXMc99iKnUgA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\acopr\\Desktop\\WEB2_PROJECT\\FullStackWebApplication\\Backend\\Backend\\Backend.csproj",
+  "projectFilePath": "C:\\Users\\acopr\\OneDrive\\Desktop\\GIT\\Angular-Csharp-SQL-WebApplication\\Backend\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\acopr\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\acopr\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
@@ -117,7 +117,11 @@
     "C:\\Users\\acopr\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\acopr\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\acopr\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\acopr\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\acopr\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\acopr\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512",
+    "C:\\Users\\acopr\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\acopr\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\acopr\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

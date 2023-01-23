@@ -17,7 +17,6 @@ namespace Backend.Controllers
             this.orderService = orderService;
         }
 
-        //u foreach jos neke provjere
         [HttpPost("make/{id}")]
         [Authorize(Roles = "NormalUser")]
         public async Task<IActionResult> MakeOrder(MakeOrderDto order, long id)
@@ -35,7 +34,6 @@ namespace Backend.Controllers
             }
         }
 
-        //Sta ako je prazano?
         [HttpGet("pending")]
         [Authorize(Roles = "Deliverer")]
         public async Task<IActionResult> GetPendingOrders()
@@ -50,7 +48,6 @@ namespace Backend.Controllers
             return Ok(await orderService.GetSelectedOrder(id));
         }
 
-        //Sta ako je prazano?
         [HttpGet("all")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllOrders()
@@ -58,7 +55,6 @@ namespace Backend.Controllers
             return Ok(await orderService.GetAllOrders());
         }
 
-        //Sta ako je prazano?
         [HttpGet("executed/{id}")]
         [Authorize(Roles = "Deliverer,NormalUser")]
         public async Task<IActionResult> GetExecutedOrder(long id)
@@ -93,7 +89,6 @@ namespace Backend.Controllers
             }
         }
 
-        //gotova provjera
         [HttpGet("current/{id}")]
         [Authorize(Roles = "Deliverer,NormalUser")]
         public async Task<IActionResult> CurrentOrders(long id)

@@ -45,8 +45,8 @@ namespace Backend.Services
             newOrder.UserId = id;
             newOrder.PaymentStatus = order.payment;
 
-            uow.OrderRepository.AddOrder(newOrder);//
-            await uow.SaveAsync();// to dole sa 56om linijom izmjeniti
+            uow.OrderRepository.AddOrder(newOrder);
+            await uow.SaveAsync();
 
             foreach (var item in order.orderProducts)
             {
@@ -102,7 +102,6 @@ namespace Backend.Services
             
             return selectedOrder;
         }
-
         public async Task<Object> GetAllOrders()
         {
             uow.OrderRepository.UpdateStatus();

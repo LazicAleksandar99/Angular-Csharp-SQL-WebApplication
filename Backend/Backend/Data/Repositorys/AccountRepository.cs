@@ -90,8 +90,6 @@ namespace Backend.Data.Repositorys
         {
             var user = dsdc.Users.SingleOrDefault(x => x.Id == id);
             user.Picture = photo;
-
-           // dsdc.SaveChanges();
         }
 
         public async Task<bool> CheckPassword(long id, string oldpassword)

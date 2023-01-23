@@ -40,15 +40,15 @@ namespace Backend.Services
 
             if (String.IsNullOrWhiteSpace(loginReq.Email))
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Email can not be blank";
-                return apiError;//BadRequest(apiError);
+                return apiError;
             }
             if(String.IsNullOrWhiteSpace(loginReq.Password) || loginReq.Password.Length < 8)
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Password can not be blank or less then 8 characters";
-                return apiError;//BadRequest(apiError);
+                return apiError;
             }
 
             var user = await uow.AccountRepository.Authenticate(loginReq.Email, loginReq.Password);
@@ -56,16 +56,16 @@ namespace Backend.Services
 
             if (user == null)
             {
-                apiError.ErrorCode = 401;// Unauthorized().StatusCode;
+                apiError.ErrorCode = 401;
                 apiError.ErrorMessage = "Invalid user name or password";
                 apiError.ErrorDetails = "This error appear when provided user id or password does not exists";
-                return apiError; //Unauthorized(apiError);
+                return apiError;
             }
 
             var loginRes = new LoginResDto();
             loginRes.Id = user.Id;
             loginRes.Token = CreateJWT(user);
-            return loginRes; //Ok(loginRes);
+            return loginRes;
         }
         public async Task<Object> Register(RegistrationDto newAccount)
         {
@@ -120,7 +120,7 @@ namespace Backend.Services
                 return apiError;
             }
 
-            if (newAccount.Birthday < new DateTime(1900, 1, 1) || newAccount.Birthday > DateTime.Now.Date)//provjeriti u nekom jos dobu dali je uvijek tacno datum posto mozda ide po Londonu i onda sat vremena nije tacno..
+            if (newAccount.Birthday < new DateTime(1900, 1, 1) || newAccount.Birthday > DateTime.Now.Date
             {
                 apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Persons birthday has to be between 1900.01.01 and current date";
@@ -142,7 +142,7 @@ namespace Backend.Services
 
             uow.AccountRepository.Register(newAccount);
             await uow.SaveAsync();
-            var newUser = await uow.AccountRepository.GetUserDetailsByUsername(newAccount.Username);//je l' ovo potrebno..
+            var newUser = await uow.AccountRepository.GetUserDetailsByUsername(newAccount.Username);
             return newUser.Id;
         }
         public async Task<Object> Update(UserUpdateDto user, long id)
@@ -151,7 +151,7 @@ namespace Backend.Services
 
             if (String.IsNullOrWhiteSpace(user.Username) || String.IsNullOrWhiteSpace(user.Username))
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "User name or password can not be blank";
                 return apiError;
             }
@@ -160,7 +160,7 @@ namespace Backend.Services
             {
                 if (await uow.AccountRepository.UsernameAlreadyExists(user.Username))
                 {
-                    apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                    apiError.ErrorCode = 400;
                     apiError.ErrorMessage = "User already exists, please try different user name";
                     return apiError;
                 }
@@ -168,7 +168,7 @@ namespace Backend.Services
 
             if (String.IsNullOrWhiteSpace(user.Email))
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Email can not be blank";
                 return apiError;
             }
@@ -176,34 +176,34 @@ namespace Backend.Services
             {
                 if (await uow.AccountRepository.EmailAlreadyExists(user.Email))
                 {
-                    apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                    apiError.ErrorCode = 400;
                     apiError.ErrorMessage = "Email already exists, please try different email";
                     return apiError;
                 }
             }
             if (String.IsNullOrWhiteSpace(user.Firstname) || user.Firstname.Length < 3)
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Firstname can not be blank or less then 3 characters";
                 return apiError;
             }
 
             if (String.IsNullOrWhiteSpace(user.Lastname) || user.Lastname.Length < 3)
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Lastname can not be blank or less then 3 characters";
                 return apiError;
             }
 
             if (user.Birthday < new DateTime(1900, 1, 1) || user.Birthday > DateTime.Now.Date)
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Persons birthday has to be between 1900.01.01 and current date";
                 return apiError;
             }
             if (String.IsNullOrWhiteSpace(user.Address) || user.Address.Length < 3)
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Address can not be blank or less then 3 characters";
                 return apiError ;
             }
@@ -222,13 +222,13 @@ namespace Backend.Services
             }
             else
             {
-                apiError.ErrorCode = 400;//BadRequest().StatusCode;
+                apiError.ErrorCode = 400;
                 apiError.ErrorMessage = "Check you old and new password, they have to be both empty or both with values with length of minimum 8 characters";
                 return apiError;
             }
 
             await uow.SaveAsync();
-            return 201;//else
+            return 201;
         }   
         public async Task<Object> GetUserDetail(long id)
         {
@@ -310,7 +310,6 @@ namespace Backend.Services
             await uow.SaveAsync();
             return 201;
         }
-
         private string CreateJWT(User user)
         {
             var secretKey = configuration.GetSection("AppSettings:Key").Value;
@@ -342,7 +341,7 @@ namespace Backend.Services
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("Verification Confirmation", "vasilije240799@gmail.com"));
-            message.To.Add(new MailboxAddress(username, "ipleydota2@gmail.com"));//ovdje bi trebalo userEmail, ali da se ne salje svaki + plus nevalidne cu praviti emailove tako da bolje ovako
+            message.To.Add(new MailboxAddress(username, "ipleydota2@gmail.com"));//ovdje bi trebalo userEmail, ali da se ne salje svaki + plus nevalidne cu praviti emailove tako da bolje ovako jer imam limit koliko smije zahtjeva dnevno
             message.Subject = "Verification";
             message.Body = new TextPart("plain")
             {

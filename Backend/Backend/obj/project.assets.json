@@ -6116,11 +6116,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\acopr\\Desktop\\WEB2_PROJECT\\FullStackWebApplication\\Backend\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\acopr\\OneDrive\\Desktop\\GIT\\Angular-Csharp-SQL-WebApplication\\Backend\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\acopr\\Desktop\\WEB2_PROJECT\\FullStackWebApplication\\Backend\\Backend\\Backend.csproj",
+      "projectPath": "C:\\Users\\acopr\\OneDrive\\Desktop\\GIT\\Angular-Csharp-SQL-WebApplication\\Backend\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\acopr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\acopr\\Desktop\\WEB2_PROJECT\\FullStackWebApplication\\Backend\\Backend\\obj\\",
+      "outputPath": "C:\\Users\\acopr\\OneDrive\\Desktop\\GIT\\Angular-Csharp-SQL-WebApplication\\Backend\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\acopr\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6204,6 +6204,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.17, 5.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -6212,7 +6230,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.414\\RuntimeIdentifierGraph.json"
       }
     }
   }

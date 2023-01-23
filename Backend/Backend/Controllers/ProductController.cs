@@ -22,7 +22,6 @@ namespace Backend.Controllers
             this.productService = productService;
         }
 
-        //Sta ako nema jos uvijek ni jedan produkt?
         [HttpGet("list")]
         [Authorize(Roles = "Admin,NormalUser")]
         public async Task<IActionResult> GetProducts()
@@ -30,7 +29,6 @@ namespace Backend.Controllers
             return Ok(await productService.GetProducts());
         }
 
-        //gotova provjera
         [HttpPost("add")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddProduct(NewProductDto newProduct)
