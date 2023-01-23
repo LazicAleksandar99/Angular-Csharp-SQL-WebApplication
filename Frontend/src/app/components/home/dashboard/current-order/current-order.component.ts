@@ -49,7 +49,6 @@ export class CurrentOrderComponent implements OnInit {
 
   handleEvent(ev: CountdownEvent) {
     if (ev.action === 'notify') {
-      // Save current value
       localStorage.setItem(KEY, `${ev.left / 1000}`);
     }
   }
